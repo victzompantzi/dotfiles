@@ -87,9 +87,10 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
-alias ll='eza --color=always --long --git --icons=always --time=modified --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=Name --links --all --hyperlink'
+alias ll='eza --color=always --long --git --icons=always --time=modified --time=accessed --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=Name --links --all --hyperlink'
 alias bat='batcat'
 alias fzb="fzf --preview 'batcat -n --color=always --wrap=auto {}'"
+alias rm='rm -I'
 
 # Shell integrations
 #eval "$(fzf --zsh)"
@@ -97,3 +98,10 @@ eval "$(zoxide init --cmd cd zsh)"
 #typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# To hide the error message of the bug described in this link: "https://github.com/romkatv/powerlevel10k/issues/1554"
+unset ZSH_AUTOSUGGEST_USE_ASYNC
+
+# Environment Variables -- 240530
+export XDG_SESSION_TYPE=wayland
+eval "$(~/.local/bin/mise activate zsh)"
+export XDG_CONFIG_HOME="$HOME/.config"
