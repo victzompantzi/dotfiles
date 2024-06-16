@@ -36,6 +36,7 @@ zinit light Aloxaf/fzf-tab
 # My added plugins VICTZ
 #zinit light ohmyzsh/plugins/ripgrep
 #zinit light ohmyzsh/plugins/tmux
+plugins=(fzf-zsh-plugin) # I don't know if this really works 240602
 
 
 # Add in snippets
@@ -87,10 +88,19 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
-alias ll='eza --color=always --long --git --icons=always --time=modified --time=accessed --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=Name --links --all --hyperlink'
+alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --no-user --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
 alias bat='batcat'
-alias fzb="fzf --preview 'batcat -n --color=always --wrap=auto {}'"
+# alias fzb="fzf --preview 'batcat -n --color=always --wrap=auto {}'"
 alias rm='rm -I'
+alias clip='xclip -sel c < '
+
+# alias fzr=""rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+#   fzf --ansi \
+#       --color "hl:-1:underline,hl+:-1:underline:reverse" \
+#       --delimiter : \
+#       --preview 'bat --color=always {1} --highlight-line {2}' \
+#       --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+#       --bind 'enter:become(nvim {1} +{2})'""
 
 # Shell integrations
 #eval "$(fzf --zsh)"
@@ -105,3 +115,20 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC
 export XDG_SESSION_TYPE=wayland
 eval "$(~/.local/bin/mise activate zsh)"
 export XDG_CONFIG_HOME="$HOME/.config"
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/mnt/c/Program\ Files/Java/jdk-22/bin"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_DEFAULT_COMMAND="fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}'"
+export FZF_COMPLETION_TRIGGER='**'
+export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_DEFAULT_OPTS="--height=50% --layout=reverse-list"
+export PATH="$PATH:$HOME/bin"
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+# export BAT_CONFIG_PATH='/mnt/c/users/vhtc8/.config/.batrc'
+export PATH=$PATH:/usr/local/go/bin
