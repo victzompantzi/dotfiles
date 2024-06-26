@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=http://ftp.vim.org/vim/runtime/spell/
+HostUrl=http://ftp.vim.org/vim/runtime/spell/es.utf-8.spl
