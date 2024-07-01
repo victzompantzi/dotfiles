@@ -5,8 +5,14 @@
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
   },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[javascript]": {
+    "editor.maxTokenizationLineLength": 2500
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -21,6 +27,8 @@
     "sound": "on"
   },
   "activePositions.autorefresh": true,
+  "allowSyntheticDefaultImports": "",
+  "auto-rename-tag.activationOnLanguage": ["html", "xml", "php", "javascript"],
   // Better Comments
   "better-comments.multilineComments": true,
   "better-comments.tags": [
@@ -69,7 +77,6 @@
       "underline": false
     }
   ],
-  "breadcrumbs.enabled": false,
   "C_Cpp.default.intelliSenseMode": "clang-x64",
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.loggingLevel": "Warning",
@@ -99,16 +106,24 @@
   "deepl.tagHandling": "off",
   "deepl.translationMode": "Replace",
   "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderIndicators": true,
   "dotnet.preferRuntimeFromSDK": true,
+  // Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
+  "editor.acceptSuggestionOnCommitCharacter": true,
+  // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
+  "editor.acceptSuggestionOnEnter": "on",
   "editor.autoClosingBrackets": "always",
-  "eslint.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always"
   },
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": true,
   "editor.fontFamily": "Cascadia Code NF",
   "editor.fontLigatures": true,
-  "editor.fontSize": 20,
+  "editor.fontSize": 19,
   "editor.fontWeight": "400",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -118,34 +133,56 @@
   "editor.guides.indentation": false,
   "editor.letterSpacing": 0.5,
   "editor.lineHeight": 0,
+  "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.matchBrackets": "always",
-  "editor.minimap.maxColumn": 120,
   "editor.minimap.autohide": true,
+  "editor.minimap.maxColumn": 120,
   "editor.minimap.showSlider": "always",
   "editor.mouseWheelZoom": true,
   "editor.overviewRulerBorder": false,
+  // Enable parameter hints
+  "editor.parameterHints.enabled": true,
+  // Controls if quick suggestions should show up while typing
+  "editor.quickSuggestions": {
+    "comments": false,
+    "other": true,
+    "strings": false
+  },
+  // Controls the delay in ms after which quick suggestions will show up.
+  "editor.quickSuggestionsDelay": 10,
   "editor.renderWhitespace": "all",
-  "diffEditor.renderIndicators": true,
   "editor.scrollbar.vertical": "visible",
   "editor.scrollbar.verticalScrollbarSize": 10,
   "editor.semanticHighlighting.enabled": "configuredByTheme",
   "editor.snippetSuggestions": "top",
   "editor.stickyScroll.enabled": true,
+  // Controls whether sorting favours words that appear close to the cursor
+  "editor.suggest.localityBonus": true,
   "editor.suggest.showStatusBar": true,
+  // Controls if suggestions should automatically show up when typing trigger characters
+  "editor.suggestOnTriggerCharacters": true,
+  // Controls how suggestions are pre-selected when showing the suggest list
+  "editor.suggestSelection": "first",
+  // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  // Enable word based suggestions
+  "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "on",
+  "eslint.enable": true,
   "eslint.run": "onType",
   "explorer.confirmDragAndDrop": false,
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-    "asvetliakov.vscode-neovim": 1
+    "asvetliakov.vscode-neovim": 1,
+    "vscodevim.vim": 1
   },
   // To improve performance
   "files.associations": {
     "*.c": "c",
-    ".batrc": "plaintext",
-    "*.js": "javascript"
+    "*.js": "javascript",
+    ".batrc": "plaintext"
   },
   "files.autoGuessEncoding": true,
   "files.autoSave": "afterDelay",
@@ -172,10 +209,56 @@
   },
   "indenticator.color.dark": "rgba(255,255,255,0.1)",
   "indenticator.width": 0.1,
+  // For which languages indent-rainbow should be deactivated (if empty it means none).
+  "indentRainbow.excludedLanguages": ["plaintext"],
+  // The delay in ms until the editor gets updated.
+  "indentRainbow.updateDelay": 100, // 10 makes it super fast but may cost more resources
+  "js/ts.implicitProjectConfig.checkJs": true,
   "launch": {
     "configurations": []
   },
   "liveServer.settings.donotShowInfoMsg": true,
+  "obsidian-md-vsc.defaultNote": "Computer Science\\!!!",
+  "obsidian-md-vsc.defaultVault": "Obsidian Vault",
+  "obsidian-md-vsc.defaultVaultPath": "C:\\Users\\vhtc8\\OneDrive\\OneSyncFiles\\Obsidian Vault",
+  "peacock.favoriteColors": [
+    {
+      "name": "Angular Red",
+      "value": "#dd0531"
+    },
+    {
+      "name": "Azure Blue",
+      "value": "#007fff"
+    },
+    {
+      "name": "JavaScript Yellow",
+      "value": "#f9e64f"
+    },
+    {
+      "name": "Mandalorian Blue",
+      "value": "#1857a4"
+    },
+    {
+      "name": "Node Green",
+      "value": "#215732"
+    },
+    {
+      "name": "React Blue",
+      "value": "#61dafb"
+    },
+    {
+      "name": "Something Different",
+      "value": "#832561"
+    },
+    {
+      "name": "Svelte Orange",
+      "value": "#ff3d00"
+    },
+    {
+      "name": "Vue Green",
+      "value": "#42b883"
+    }
+  ],
   "powershell.buttons.showPanelMovementButtons": true,
   "powershell.codeFolding.showLastLine": false,
   "powershell.integratedConsole.focusConsoleOnExecute": false,
@@ -187,6 +270,17 @@
   "python.defaultInterpreterPath": "C:\\Windows\\py.exe",
   "redhat.telemetry.enabled": false,
   "remote.autoForwardPortsSource": "output",
+  "saveFile": [
+    "src.remember",
+    "workbench.action.files.save",
+    {
+      "args": {
+        "delay": 1000 // change accroding to your need
+      },
+      "command": "$delay"
+    },
+    "src.restore"
+  ],
   "security.allowedUNCHosts": ["wsl.localhost"],
   "security.workspace.trust.untrustedFiles": "open",
   "subtleBrackets.pairs": [
@@ -211,15 +305,19 @@
   "tabnine.experimentalAutoImports": true,
   "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
   "terminal.integrated.allowChords": false,
+  "terminal.integrated.cursorBlinking": true,
   //"terminal.integrated.automationProfile.windows": {
   //  "path": "C:\\Program Files\\PowerShell7\\pwsh.exe"
   //},
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.enableImages": true,
+  "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.enableVisualBell": true,
   "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.middleClickBehavior": "paste",
+  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "typescript.tsserver.log": "normal",
   "update.mode": "start",
   "vim.easymotion": true,
   "vim.handleKeys": {
@@ -285,6 +383,21 @@
       "commands": ["editor.action.outdentLines"]
     }
   ],
+  "vscode-neovim.compositeKeys": {
+    "jk": {
+      "args": [
+        [
+          "local code = require('vscode')",
+          "code.action('vscode-neovim.escape')",
+          "code.action('workbench.action.files.save')"
+        ]
+      ],
+      // Use lua to execute any logic
+      "command": "vscode-neovim.lua"
+    }
+  },
+  "vscode-neovim.neovimClean": false,
+  "vscode-neovim.neovimExecutablePaths.win32": "C:\\Users\\vhtc8\\scoop\\shims\\nvim.exe",
   "whichkey.bindings": [
     {
       "command": "workbench.action.showCommands",
@@ -1491,139 +1604,17 @@
   ],
   "window.titleBarStyle": "custom",
   "windows.zoomLevel": 1,
+  "workbench.colorTheme": "Dobri Next -B02- Medium",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.showTabs": "single",
+  "workbench.iconTheme": "catppuccin-mocha",
   "workbench.preferredDarkColorTheme": "Tokyo Night",
+  "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.applyToAllProfiles": [
     "editor.suggest.showStatusBar",
     "editor.fontFamily"
   ],
-  "workbench.startupEditor": "none",
-  "saveFile": [
-    "src.remember",
-    "workbench.action.files.save",
-    {
-      "command": "$delay",
-      "args": {
-        "delay": 1000 // change accroding to your need
-      }
-    },
-    "src.restore"
-  ],
-  // For which languages indent-rainbow should be deactivated (if empty it means none).
-  "indentRainbow.excludedLanguages": ["plaintext"],
-
-  // The delay in ms until the editor gets updated.
-  "indentRainbow.updateDelay": 100, // 10 makes it super fast but may cost more resources
-  "terminal.integrated.persistentSessionReviveProcess": "never",
-  "terminal.integrated.enablePersistentSessions": false,
-  "peacock.favoriteColors": [
-    {
-      "name": "Angular Red",
-      "value": "#dd0531"
-    },
-    {
-      "name": "Azure Blue",
-      "value": "#007fff"
-    },
-    {
-      "name": "JavaScript Yellow",
-      "value": "#f9e64f"
-    },
-    {
-      "name": "Mandalorian Blue",
-      "value": "#1857a4"
-    },
-    {
-      "name": "Node Green",
-      "value": "#215732"
-    },
-    {
-      "name": "React Blue",
-      "value": "#61dafb"
-    },
-    {
-      "name": "Something Different",
-      "value": "#832561"
-    },
-    {
-      "name": "Svelte Orange",
-      "value": "#ff3d00"
-    },
-    {
-      "name": "Vue Green",
-      "value": "#42b883"
-    }
-  ],
-  "auto-rename-tag.activationOnLanguage": ["html", "xml", "php", "javascript"],
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "vscode-neovim.neovimClean": false,
-  "vscode-neovim.neovimExecutablePaths.win32": "C:\\Users\\vhtc8\\scoop\\shims\\nvim.exe",
-  "editor.cursorBlinking": "phase",
-  "editor.cursorWidth": 4,
-  "terminal.integrated.cursorBlinking": true,
-  "editor.cursorSmoothCaretAnimation": "on",
-  "vscode-neovim.compositeKeys": {
-    "jk": {
-      // Use lua to execute any logic
-      "command": "vscode-neovim.lua",
-      "args": [
-        [
-          "local code = require('vscode')",
-          "code.action('vscode-neovim.escape')",
-          "code.action('workbench.action.files.save')"
-        ]
-      ]
-    }
-  },
-  // Controls if quick suggestions should show up while typing
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": false
-  },
-
-  // Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
-  "editor.acceptSuggestionOnCommitCharacter": true,
-
-  // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
-  "editor.acceptSuggestionOnEnter": "on",
-
-  // Controls the delay in ms after which quick suggestions will show up.
-  "editor.quickSuggestionsDelay": 10,
-
-  // Controls if suggestions should automatically show up when typing trigger characters
-  "editor.suggestOnTriggerCharacters": true,
-
-  // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
-  "editor.tabCompletion": "on",
-
-  // Controls whether sorting favours words that appear close to the cursor
-  "editor.suggest.localityBonus": true,
-
-  // Controls how suggestions are pre-selected when showing the suggest list
-  "editor.suggestSelection": "first",
-
-  // Enable word based suggestions
-  "editor.wordBasedSuggestions": "matchingDocuments",
-
-  // Enable parameter hints
-  "editor.parameterHints.enabled": true,
-  "[javascript]": {
-    "editor.maxTokenizationLineLength": 2500
-  },
-  "workbench.productIconTheme": "fluent-icons",
-  "workbench.iconTheme": "catppuccin-mocha",
-  "workbench.colorTheme": "Best Themes - Pink Panther",
-  "allowSyntheticDefaultImports": "",
-  "typescript.tsserver.log": "normal",
-  "js/ts.implicitProjectConfig.checkJs": true,
-  "editor.detectIndentation": true,
-  "editor.tabSize": 2,
-  "obsidian-md-vsc.defaultVault": "Obsidian Vault",
-  "obsidian-md-vsc.defaultVaultPath": "C:\\Users\\vhtc8\\OneDrive\\OneSyncFiles\\Obsidian Vault",
-  "obsidian-md-vsc.defaultNote": "Computer Science\\!!!"
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"]
 }

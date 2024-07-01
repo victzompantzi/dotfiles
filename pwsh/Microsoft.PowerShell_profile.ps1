@@ -99,6 +99,7 @@ function new {
     Set-Alias fze Invoke-FuzzyEdit
     Set-Alias c Clear-Host
     Set-Alias lf yazi
+    Set-Alias ch choco
 
     # Init posh-git
     Import-Module posh-git
@@ -153,11 +154,7 @@ function new {
     }
 
 
-    # Utilities
-    function se {
-        param($String)
-        Set-LocationFuzzyEverything -Directory $String
-    }
+# Utilities
 
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
@@ -166,6 +163,10 @@ fnm env --use-on-cd | Out-String | Invoke-Expression
 
 function .. {
     Invoke-Item .
+}
+
+function ... {
+    code .
 }
 
 function Get-PublicIp {

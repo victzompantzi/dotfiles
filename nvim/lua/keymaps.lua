@@ -2,6 +2,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.api.nvim_set_keymap("i", "jk", "<Esc>v", {noremap=false})
+vim.api.nvim_set_keymap("i", "kj", "<Esc>v", {noremap=false})
 -- twilight
 vim.api.nvim_set_keymap("n", "tw", ":Twilight<enter>", {noremap=false})
 -- buffers
@@ -17,7 +18,9 @@ vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
 vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
-vim.api.nvim_set_keymap("i", "<C-d>", "<C-o>dw", {noremap=true})
+vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>dw", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "a <CR>", {noremap=true})
+
 --"<C-e>", "<C-o>dw", { desc = "Delete Word Forward"}, {noremap=true}
 -- splits
 --
@@ -48,7 +51,6 @@ vim.keymap.set("n", "<leader>ee", "<cmd>GoIfErr<cr>",
 vim.keymap.set("n", ";", ":", { desc = "CMD enter command mode" })
 vim.api.nvim_set_keymap("n", "<F12>", ":SymbolsOutline<enter>", {noremap=false})
 --vim.keymap.set("i", "<C-e>", "<C-o>dw", { desc = "Delete Word Forward"}, {noremap=true})
-vim.keymap.set("n", "U", "<C-r>", { desc = "Redo"})
 vim.keymap.set("n", "<down>", "gj")
 vim.keymap.set("i", "<down>", "<C-o>gj")
 vim.keymap.set("n", "<up>", "gk")
