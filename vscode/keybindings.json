@@ -202,7 +202,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+alt+e",
+    "key": "ctrl+1",
     "command": "expand_region",
     "when": "editorTextFocus"
   },
@@ -324,7 +324,7 @@
     "when": "inQuickOpen"
   },
   {
-    "key": "ctrl+0",
+    "key": "alt+backspace",
     "command": "workbench.action.openPreviousEditorFromHistory"
   },
   {
@@ -343,10 +343,6 @@
   {
     "key": "ctrl+k ctrl+p",
     "command": "-workbench.action.showAllEditors"
-  },
-  {
-    "key": "ctrl+tab",
-    "command": "workbench.action.showAllEditorsByMostRecentlyUsed"
   },
   {
     "key": "ctrl+b",
@@ -399,11 +395,6 @@
     "command": "-code-runner.runCustomCommand"
   },
   {
-    "key": "ctrl+d",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysInsert.d && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
     "key": "ctrl+i",
     "command": "-workbench.action.chat.startVoiceChat",
     "when": "chatIsEnabled && hasSpeechProvider && inChatInput && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress && !terminalChatActiveRequest || chatIsEnabled && hasSpeechProvider && inlineChatFocused && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress && !terminalChatActiveRequest"
@@ -446,7 +437,7 @@
   {
     "command": "vscode-neovim.send",
     // the key sequence to activate the binding
-    "key": "ctrl+d",
+    "key": "ctrl+e",
     // don't activate during insert mode
     "when": "editorTextFocus && neovim.mode == insert",
     // the input to send to Neovim
@@ -621,5 +612,32 @@
     "key": "ctrl+f",
     "command": "-editor.action.pageDownHover",
     "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "-workbench.action.focusSecondEditorGroup"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.showEditorsInActiveGroup"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+    "when": "inEditorsPicker && inQuickOpen"
+  },
+  {
+    "key": "alt+0",
+    "command": "-workbench.action.lastEditorInGroup"
   }
 ]

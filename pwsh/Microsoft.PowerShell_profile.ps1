@@ -44,20 +44,20 @@ function yt {
         yt-dlp --config-location %APPDATA%\yt-dlp\config\config.txt $url
     }
 
-function fds {
+    function fds {
         fd --type file --full-path | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})' --bind 'ctrl-m:become(mpv {+})'
-}
+    }
 
-# Set-PSReadLineKeyHandler -Key 'Ctrl-b' -ScriptBlock { fd! }
+    # Set-PSReadLineKeyHandler -Key 'Ctrl-b' -ScriptBlock { fd! }
 
-function Get-FolderSize{
-    param($String)
-    "{0:N2} GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
-}
-function Get-EmptyDirectories{
-    Get-ChildItem -Directory -Recurse | ForEach-Object{ if($_.GetFiles().Length -eq "0") {$_.FullName}}
-}
-function gs {
+    function Get-DirectorySize{
+        param($String)
+        "{0:N2} GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
+    }
+    function Get-EmptyDirectories{
+        Get-ChildItem -Directory -Recurse | ForEach-Object{ if($_.GetFiles().Length -eq "0") {$_.FullName}}
+    }
+    function gs {
     git status
 }
 
@@ -88,48 +88,48 @@ function new {
     New-Item -ItemType File -Name $String
 }
 
-    # Alias
-    Set-Alias vim nvim
-    Set-Alias tt tree
-    Set-Alias which Get-Command
-    Set-Alias man Get-Help
-    Set-Alias g git
-    Set-Alias kill Invoke-FuzzyKillProcess
-    Set-Alias fzg Invoke-FuzzyGitStatus
-    Set-Alias fze Invoke-FuzzyEdit
-    Set-Alias c Clear-Host
-    Set-Alias lf yazi
-    Set-Alias ch choco
+# Alias
+Set-Alias vim nvim
+Set-Alias tt tree
+Set-Alias which Get-Command
+Set-Alias man Get-Help
+Set-Alias g git
+Set-Alias kill Invoke-FuzzyKillProcess
+Set-Alias fzg Invoke-FuzzyGitStatus
+Set-Alias c Clear-Host
+Set-Alias lf yazi
+Set-Alias ch choco
 
-    # Init posh-git
-    Import-Module posh-git
+# Init posh-git
+Import-Module posh-git
 
-    # Init o-m-p
-    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\xtoys.omp.json" | Invoke-Expression
+# Init o-m-p
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\montys.omp.json" | Invoke-Expression
 
-    # Init Terminal Icons
-    Import-Module -Name Terminal-Icons
+# Init Terminal Icons
+Import-Module -Name Terminal-Icons
 
-    # Refresh Env
-    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+# Refresh Env
+Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 
-    # Completion Predictor
-    Import-Module -Name CompletionPredictor
+# Completion Predictor
+Import-Module -Name CompletionPredictor
 
-    # PSReadLine Options
-    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-    Set-PSReadlineKeyHandler -Key 'Escape,_' -Function YankLastArg
-    # Set-PSReadlineKeyHandler -Key 'Ctrl-b' -Function fd!
-    Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-    Set-PSReadLineOption -HistoryNoDuplicates
-    Set-PSReadLineOption -PredictionViewStyle InlineView
-    Set-PSReadLineOption -TerminateOrphanedConsoleApps
-    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-    # Set-PSReadLineOption -EditMode Vi
-    Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
-    Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-    Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta'; comment="`e[92m"}
+# PSReadLine Options
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadlineKeyHandler -Key 'Escape,_' -Function YankLastArg
+Set-PSReadLineKeyHandler -Chord 'Ctrl+RightArrow' -Function ForwardWord
+# Set-PSReadlineKeyHandler -Key 'Ctrl-b' -Function fd!
+Set-PSReadLineOption -PredictionSource HistoryAndPlugin
+Set-PSReadLineOption -HistoryNoDuplicates
+Set-PSReadLineOption -PredictionViewStyle InlineView
+Set-PSReadLineOption -TerminateOrphanedConsoleApps
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+# Set-PSReadLineOption -EditMode Vi
+Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
+Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta'; comment="`e[92m"}
 
     Set-PSReadLineKeyHandler -Chord '"',"'" `
     -BriefDescription SmartInsertQuote `

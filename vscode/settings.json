@@ -123,7 +123,7 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "Cascadia Code NF",
   "editor.fontLigatures": true,
-  "editor.fontSize": 19,
+  "editor.fontSize": 18,
   "editor.fontWeight": "400",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -267,7 +267,7 @@
   "prettier.eslintIntegration": true,
   "projectManager.hg.baseFolders": ["C:\\Users\\vhtc8\\projects"],
   "projectManager.sortList": "Recent",
-  "python.defaultInterpreterPath": "C:\\Windows\\py.exe",
+  "python.defaultInterpreterPath": "C:\\Users\\vhtc8\\.pyenv\\pyenv-win\\versions\\3.11.9\\python.exe",
   "redhat.telemetry.enabled": false,
   "remote.autoForwardPortsSource": "output",
   "saveFile": [
@@ -275,7 +275,7 @@
     "workbench.action.files.save",
     {
       "args": {
-        "delay": 1000 // change accroding to your need
+        "delay": 1000 // change according to your need
       },
       "command": "$delay"
     },
@@ -317,7 +317,7 @@
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.middleClickBehavior": "paste",
   "terminal.integrated.persistentSessionReviveProcess": "never",
-  "typescript.tsserver.log": "normal",
+  "typescript.tsserver.log": "off",
   "update.mode": "start",
   "vim.easymotion": true,
   "vim.handleKeys": {
@@ -1604,17 +1604,21 @@
   ],
   "window.titleBarStyle": "custom",
   "windows.zoomLevel": 1,
-  "workbench.colorTheme": "Dobri Next -B02- Medium",
+  "workbench.colorTheme": "Best Themes - Calm Darkvenom",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.enablePreview": false,
   "workbench.editor.showTabs": "single",
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.preferredDarkColorTheme": "Tokyo Night",
-  "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.applyToAllProfiles": [
     "editor.suggest.showStatusBar",
     "editor.fontFamily"
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"]
+  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
+  "git.autofetch": true,
+  "extensiontotal.apiKeySetting": "xtotal3a5336b6831a45679b4d6543735c4285",
+  "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
+  "editor.accessibilitySupport": "off",
+  "workbench.productIconTheme": "fluent-icons"
 }
