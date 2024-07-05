@@ -81,18 +81,22 @@
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.loggingLevel": "Warning",
   "clangd.checkUpdates": true,
+  "clangd.path": "C:\\clang+llvm-18.1.8-x86_64-pc-windows-msvc\\bin\\clangd.exe",
   "cloudcode.autoDependencies": "off",
   "cmake.configureOnOpen": true,
   "cmake.options.statusBarVisibility": "compact",
   "cmake.showOptionsMovedNotification": false,
+  "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
   "commentTranslate.targetLanguage": "es",
   "cSpell.enableFiletypes": ["!c"],
+  "cSpell.ignoreWords": ["vhtc"],
   "cSpell.language": "en,es",
   "cSpell.userWords": [
     "CDMX",
     "Contáctanos",
     "Cuauhtémoc",
     "dotnet",
+    "indenticator",
     "mayoreo",
     "Obregón",
     "Poniatowska",
@@ -112,8 +116,10 @@
   "editor.acceptSuggestionOnCommitCharacter": true,
   // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
   "editor.acceptSuggestionOnEnter": "on",
+  "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
   "editor.codeActionsOnSave": {
+    // TODO: check other options
     "source.fixAll.eslint": "always"
   },
   "editor.cursorBlinking": "phase",
@@ -121,7 +127,7 @@
   "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
-  "editor.fontFamily": "Cascadia Code NF",
+  "editor.fontFamily": "MesloLGM Nerd Font Mono, CommitMono, Cascadia Code NF",
   "editor.fontLigatures": true,
   "editor.fontSize": 18,
   "editor.fontWeight": "400",
@@ -132,7 +138,7 @@
   "editor.guides.bracketPairs": true,
   "editor.guides.indentation": false,
   "editor.letterSpacing": 0.5,
-  "editor.lineHeight": 0,
+  "editor.lineHeight": 1.5,
   "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
   "editor.matchBrackets": "always",
@@ -178,6 +184,7 @@
     "asvetliakov.vscode-neovim": 1,
     "vscodevim.vim": 1
   },
+  "extensiontotal.apiKeySetting": "xtotal3a5336b6831a45679b4d6543735c4285",
   // To improve performance
   "files.associations": {
     "*.c": "c",
@@ -192,6 +199,7 @@
   "files.eol": "\r\n",
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": false,
@@ -218,7 +226,7 @@
     "configurations": []
   },
   "liveServer.settings.donotShowInfoMsg": true,
-  "obsidian-md-vsc.defaultNote": "Computer Science\\!!!",
+  "obsidian-md-vsc.defaultNote": "Computer Science\\VSCode\\projects",
   "obsidian-md-vsc.defaultVault": "Obsidian Vault",
   "obsidian-md-vsc.defaultVaultPath": "C:\\Users\\vhtc8\\OneDrive\\OneSyncFiles\\Obsidian Vault",
   "peacock.favoriteColors": [
@@ -265,6 +273,7 @@
   "powershell.pester.codeLens": false,
   "prettier.endOfLine": "auto",
   "prettier.eslintIntegration": true,
+  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
   "projectManager.hg.baseFolders": ["C:\\Users\\vhtc8\\projects"],
   "projectManager.sortList": "Recent",
   "python.defaultInterpreterPath": "C:\\Users\\vhtc8\\.pyenv\\pyenv-win\\versions\\3.11.9\\python.exe",
@@ -281,6 +290,7 @@
     },
     "src.restore"
   ],
+  "scm.experimental.showHistoryGraph": true,
   "security.allowedUNCHosts": ["wsl.localhost"],
   "security.workspace.trust.untrustedFiles": "open",
   "subtleBrackets.pairs": [
@@ -306,12 +316,11 @@
   "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
   "terminal.integrated.allowChords": false,
   "terminal.integrated.cursorBlinking": true,
-  //"terminal.integrated.automationProfile.windows": {
-  //  "path": "C:\\Program Files\\PowerShell7\\pwsh.exe"
-  //},
+  "terminal.integrated.automationProfile.windows": {
+    "path": "pwsh --noprofile"
+  },
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.enableImages": true,
-  "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.enableVisualBell": true,
   "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
   "terminal.integrated.gpuAcceleration": "on",
@@ -1604,21 +1613,22 @@
   ],
   "window.titleBarStyle": "custom",
   "windows.zoomLevel": 1,
-  "workbench.colorTheme": "Best Themes - Calm Darkvenom",
+  "workbench.colorTheme": "Dobri Next -C03- Cupcake",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.editor.enablePreview": false,
   "workbench.editor.showTabs": "single",
+  "workbench.experimental.enableNewProfilesUI": true,
   "workbench.iconTheme": "catppuccin-mocha",
   "workbench.preferredDarkColorTheme": "Tokyo Night",
+  "workbench.productIconTheme": "fluent-icons",
   "workbench.settings.applyToAllProfiles": [
     "editor.suggest.showStatusBar",
     "editor.fontFamily"
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
-  "git.autofetch": true,
-  "extensiontotal.apiKeySetting": "xtotal3a5336b6831a45679b4d6543735c4285",
-  "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
-  "editor.accessibilitySupport": "off",
-  "workbench.productIconTheme": "fluent-icons"
+  "security.promptForLocalFileProtocolHandling": false,
+  "terminal.integrated.hideOnStartup": "always",
+  "terminal.integrated.mouseWheelZoom": true,
+  "terminal.integrated.enablePersistentSessions": false,
+  "powershell.cwd": "C:\\Users\\vhtc8\\projects",
+  "powershell.integratedConsole.showOnStartup": false
 }

@@ -19,11 +19,9 @@ vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
 vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>dw", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-j>", "a <CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<C-j>", "i<CR>", {noremap=true})
 
---"<C-e>", "<C-o>dw", { desc = "Delete Word Forward"}, {noremap=true}
 -- splits
---
 vim.api.nvim_set_keymap("n", "<C-W>,", ":vertical resize -10<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "<C-W>.", ":vertical resize +10<CR>", {noremap=true})
 vim.keymap.set('n', '<space><space>', "<cmd>set nohlsearch<CR>")
@@ -59,4 +57,3 @@ vim.api.nvim_set_keymap('n', 'p', ':lua require("nvim-clean-paste").custom_paste
 vim.api.nvim_set_keymap("n", "<leader>1", ":TimerStart 1h<enter>", {noremap=false})
 vim.keymap.set("n", "<ScrollWheelUp>", "<C-Y>", {noremap=false})
 vim.keymap.set("n", "<ScrollWheelDown>", "<C-E>", {noremap=false})
-vim.keymap.set( 'n', '<F10>', ':set spell!<CR>', { noremap = true, silent = true })

@@ -109,13 +109,6 @@
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
   {
-    "key": "ctrl+l",
-    "command": "acceptSelectedSuggestion",
-    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-  },
-  // Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
-  // Cannot be added to package.json because of conflict with vim's default bindings
-  {
     "key": "ctrl+j",
     "command": "showNextParameterHint",
     "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
@@ -136,12 +129,6 @@
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
   },
-  {
-    "key": "ctrl+l",
-    "command": "acceptSelectedCodeAction",
-    "when": "codeActionMenuVisible"
-  },
-  // Add ctrl+h/l to navigate in file browser
   {
     "key": "alt+d",
     "command": "editor.action.copyLinesDownAction",
@@ -218,11 +205,6 @@
   {
     "key": "ctrl+k ctrl+t",
     "command": "-workbench.action.selectTheme"
-  },
-  {
-    "key": "ctrl+v",
-    "command": "editor.action.clipboardPasteAction",
-    "when": "editorTextFocus"
   },
   {
     "key": "ctrl+v",
@@ -324,7 +306,7 @@
     "when": "inQuickOpen"
   },
   {
-    "key": "alt+backspace",
+    "key": "ctrl+shift+z",
     "command": "workbench.action.openPreviousEditorFromHistory"
   },
   {
@@ -333,7 +315,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+g",
+    "key": "ctrl+k g",
     "command": "extension.liveServer.goOnline"
   },
   {
@@ -472,31 +454,16 @@
     "when": "editorTextFocus && neovim.ctrlKeysNormal.z && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
   },
   {
-    "key": "ctrl+a",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysInsert.a && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+a",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysNormal.a && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+h",
+    "key": "win+f10",
     "command": "workbench.action.navigateLeft"
   },
   {
-    "key": "ctrl+l",
+    "key": "win+f12",
     "command": "workbench.action.navigateRight"
   },
   {
     "key": "ctrl+0",
     "command": "-workbench.action.focusSideBar"
-  },
-  {
-    "key": "ctrl+l",
-    "command": "-workbench.action.chat.newChat",
-    "when": "chatIsEnabled && inChat"
   },
   {
     "key": "ctrl+l",
@@ -507,11 +474,6 @@
     "key": "ctrl+l",
     "command": "-vscode-neovim.send",
     "when": "editorTextFocus && neovim.ctrlKeysInsert.l && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+l",
-    "command": "-expandLineSelection",
-    "when": "textInputFocus"
   },
   {
     "key": "ctrl+h",
@@ -586,16 +548,6 @@
   },
   {
     "key": "ctrl+g",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysNormal.g && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+g",
-    "command": "-vscode-neovim.send",
-    "when": "editorTextFocus && neovim.ctrlKeysInsert.g && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-  },
-  {
-    "key": "ctrl+g",
     "command": "-workbench.action.gotoLine"
   },
   {
@@ -639,5 +591,147 @@
   {
     "key": "alt+0",
     "command": "-workbench.action.lastEditorInGroup"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "editor.action.nextMatchFindAction",
+    "when": "editorFocus"
+  },
+  {
+    "key": "f3",
+    "command": "-editor.action.nextMatchFindAction",
+    "when": "editorFocus"
+  },
+  {
+    "key": "f3",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "f4",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+alt+b",
+    "command": "-workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "-editor.action.selectAll"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-editor.action.commentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
+    "when": "inQuickOpen && inViewsPicker"
+  },
+  {
+    "key": "ctrl+shift+q",
+    "command": "-workbench.action.quickOpenNavigatePreviousInViewPicker",
+    "when": "inQuickOpen && inViewsPicker"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quickOpenView"
+  },
+  {
+    "key": "ctrl+k t",
+    "command": "workbench.action.selectTheme"
+  },
+  {
+    "key": "ctrl+k b",
+    "command": "bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "-bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+h",
+    "command": "bookmarks.jumpToPrevious",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "-bookmarks.jumpToPrevious",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+k",
+    "command": "-bookmarks.shrinkSelection",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+j",
+    "command": "-bookmarks.expandSelectionToPrevious",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+l",
+    "command": "-bookmarks.expandSelectionToNext",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+l c",
+    "command": "-extension.copyGitHubLinkToClipboard"
+  },
+  {
+    "key": "ctrl+l g",
+    "command": "-extension.openInGitHub"
+  },
+  {
+    "key": "ctrl+l p",
+    "command": "-extension.openPrGitProvider"
+  },
+  {
+    "key": "end",
+    "command": "-editor.action.goToBottomHover",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "home",
+    "command": "-editor.action.goToTopHover",
+    "when": "editorHoverFocused"
+  },
+  {
+    "key": "ctrl+k ctrl+k",
+    "command": "-editor.action.selectFromAnchorToCursor",
+    "when": "editorTextFocus && selectionAnchorSet"
+  },
+  {
+    "key": "ctrl+k ctrl+k",
+    "command": "-editor.action.defineKeybinding",
+    "when": "resource == 'vscode-userdata:/c%3A/Users/vhtc8/AppData/Roaming/Code/User/keybindings.json'"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "editor.action.previousMatchFindAction",
+    "when": "editorFocus && findInputFocussed"
+  },
+  {
+    "key": "shift+enter",
+    "command": "-editor.action.previousMatchFindAction",
+    "when": "editorFocus && findInputFocussed"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "-workbench.action.newWindow"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "-redo"
   }
 ]

@@ -21,8 +21,8 @@ $env:RIPGREP_CONFIG_PATH="C:\Users\vhtc8\.config\.ripgreprc"
 #$env:FZF_ALT_C_OPTS="fd --type d --preview 'eza --tree --color=always {} | head -200'"
 # Print tree structure in the preview window
 $env:FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target --preview 'eza --tree --color=always {} | head -200'"
-$env:FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
-$env:FZF_COMPLETION_TRIGGER="**"
+# $env:FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {}'"
+# $env:FZF_COMPLETION_TRIGGER="**"
 $env:FZF_COMPLETION_OPTS='--border --info=inline'
 $env:FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
 $env:FZF_DEFAULT_OPTS="--height=50% --layout=reverse-list -m"
@@ -89,7 +89,7 @@ function new {
 }
 
 # Alias
-Set-Alias vim nvim
+Set-Alias v nvim
 Set-Alias tt tree
 Set-Alias which Get-Command
 Set-Alias man Get-Help
@@ -104,7 +104,7 @@ Set-Alias ch choco
 Import-Module posh-git
 
 # Init o-m-p
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\montys.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\unicorn.omp.json" | Invoke-Expression
 
 # Init Terminal Icons
 Import-Module -Name Terminal-Icons
@@ -116,6 +116,7 @@ Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 Import-Module -Name CompletionPredictor
 
 # PSReadLine Options
+# ! Add KeyHandlers
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Escape,_' -Function YankLastArg
