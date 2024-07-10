@@ -1,6 +1,5 @@
 # PSEverything
 Import-Module PSEverything
-
 # PsFzf Options
 Import-Module PSFzf
 Set-PsFzfOption -TabExpansion
@@ -99,6 +98,7 @@ Set-Alias fzg Invoke-FuzzyGitStatus
 Set-Alias c Clear-Host
 Set-Alias lf yazi
 Set-Alias ch choco
+Set-Alias rms Remove-ItemSafely
 
 # Init posh-git
 Import-Module posh-git

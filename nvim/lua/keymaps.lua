@@ -12,12 +12,10 @@ vim.api.nvim_set_keymap("n", "th", ":bprev<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "tl", ":bnext<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "td", ":bdelete<enter>", {noremap=false})
 -- files
-vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", {noremap=false})
-vim.api.nvim_set_keymap("n", "<leader>wq", ":wq<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
 vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "zx", ":%y+<CR>", {noremap=true})
 vim.api.nvim_set_keymap("i", "<C-e>", "<C-o>dw", { noremap = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "i<CR>", {noremap=true})
 

@@ -1,6 +1,18 @@
 // Place your key bindings in this file to override the defaults
 [
   {
+    "key": "ctrl+alt+c",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "editor.action.copyLinesDownAction",
+        "cursorUp",
+        "editor.action.addCommentLine",
+        "cursorDown"
+      ]
+    }
+  },
+  {
     "key": "cmd+s",
     "command": "macros.saveFile",
     "when": "editorFocus"
@@ -228,11 +240,11 @@
     "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup",
     "when": "!activeEditorGroupEmpty"
   },
-  {
-    "key": "ctrl+shift+tab",
-    "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
-    "when": "inEditorsPicker && inQuickOpen"
-  },
+  // {
+  //   "key": "ctrl+shift+tab",
+  //   "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+  //   "when": "inEditorsPicker && inQuickOpen"
+  // },
   {
     "key": "ctrl+shift+tab",
     "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup",
@@ -296,11 +308,6 @@
     "command": "-workbench.action.quickOpen"
   },
   {
-    "key": "ctrl+p",
-    "command": "-workbench.action.quickOpenSelectPrevious",
-    "when": "inQuickOpen && neovim.mode != 'cmdline'"
-  },
-  {
     "key": "shift+escape",
     "command": "-workbench.action.closeQuickOpen",
     "when": "inQuickOpen"
@@ -361,7 +368,7 @@
     "when": "editorTextFocus && neovim.ctrlKeysNormal.b && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
   },
   {
-    "key": "ctrl+9",
+    "key": "ctrl+0",
     "command": "workbench.action.openRecent"
   },
   {
@@ -585,7 +592,7 @@
   },
   {
     "key": "ctrl+tab",
-    "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+    "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
     "when": "inEditorsPicker && inQuickOpen"
   },
   {
@@ -630,20 +637,6 @@
     "key": "ctrl+q",
     "command": "-editor.action.commentLine",
     "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "ctrl+q",
-    "command": "-workbench.action.quickOpenNavigateNextInViewPicker",
-    "when": "inQuickOpen && inViewsPicker"
-  },
-  {
-    "key": "ctrl+shift+q",
-    "command": "-workbench.action.quickOpenNavigatePreviousInViewPicker",
-    "when": "inQuickOpen && inViewsPicker"
-  },
-  {
-    "key": "ctrl+q",
-    "command": "-workbench.action.quickOpenView"
   },
   {
     "key": "ctrl+k t",
@@ -733,5 +726,15 @@
   {
     "key": "ctrl+shift+z",
     "command": "-redo"
+  },
+  {
+    "key": "down",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "-workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen && neovim.mode != 'cmdline'"
   }
 ]

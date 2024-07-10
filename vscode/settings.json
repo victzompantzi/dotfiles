@@ -127,10 +127,10 @@
   "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
-  "editor.fontFamily": "MesloLGM Nerd Font Mono, CommitMono, Cascadia Code NF",
+  "editor.fontFamily": "Hasklug Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 18,
-  "editor.fontWeight": "400",
+  "editor.fontWeight": "600",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -1613,7 +1613,7 @@
   ],
   "window.titleBarStyle": "custom",
   "windows.zoomLevel": 1,
-  "workbench.colorTheme": "Dobri Next -C03- Cupcake",
+  "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.showTabs": "single",
   "workbench.experimental.enableNewProfilesUI": true,
@@ -1629,6 +1629,28 @@
   "terminal.integrated.hideOnStartup": "always",
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.enablePersistentSessions": false,
-  "powershell.cwd": "C:\\Users\\vhtc8\\projects",
-  "powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  "gitlens.mode.active": "zen",
+  "diffEditor.maxComputationTime": 0,
+  "[mysql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
+  },
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "vscode",
+      "database": "practica2",
+      "username": "root"
+    }
+  ],
+  "powershell.integratedConsole.suppressStartupBanner": true,
+  "terminal.integrated.cwd": "C:\\Users\\vhtc8\\OneDrive\\projects",
+  "powershell.cwd": "C:\\Users\\vhtc8\\OneDrive\\projects"
 }
