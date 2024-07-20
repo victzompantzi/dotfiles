@@ -126,17 +126,15 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.detectIndentation": true,
   "editor.fontFamily": "Hasklug Nerd Font",
   "editor.fontLigatures": true,
-  "editor.fontSize": 18,
+  "editor.fontSize": 17,
   "editor.fontWeight": "600",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.glyphMargin": true,
   "editor.guides.bracketPairs": true,
-  "editor.guides.indentation": false,
   "editor.letterSpacing": 0.5,
   "editor.lineHeight": 1.5,
   "editor.lineNumbers": "relative",
@@ -217,6 +215,9 @@
   },
   "indenticator.color.dark": "rgba(255,255,255,0.1)",
   "indenticator.width": 0.1,
+  "indenticator.showHover": true,
+  "indenticator.inner.showIndentGuide": true,
+  "indenticator.inner.color.dark": "#ff00ff",
   // For which languages indent-rainbow should be deactivated (if empty it means none).
   "indentRainbow.excludedLanguages": ["plaintext"],
   // The delay in ms until the editor gets updated.
@@ -225,6 +226,7 @@
   "launch": {
     "configurations": []
   },
+  "editor.highlightActivateIndentGuide": true,
   "liveServer.settings.donotShowInfoMsg": true,
   "obsidian-md-vsc.defaultNote": "Computer Science\\VSCode\\projects",
   "obsidian-md-vsc.defaultVault": "Obsidian Vault",
@@ -276,7 +278,7 @@
   "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
   "projectManager.hg.baseFolders": ["C:\\Users\\vhtc8\\projects"],
   "projectManager.sortList": "Recent",
-  "python.defaultInterpreterPath": "C:\\Users\\vhtc8\\.pyenv\\pyenv-win\\versions\\3.11.9\\python.exe",
+  "python.defaultInterpreterPath": "C:\\Users\\vhtc8\\.pyenv\\pyenv-win\\shims\\python.bat",
   "redhat.telemetry.enabled": false,
   "remote.autoForwardPortsSource": "output",
   "saveFile": [
@@ -1613,7 +1615,7 @@
   ],
   "window.titleBarStyle": "custom",
   "windows.zoomLevel": 1,
-  "workbench.colorTheme": "Rosé Pine",
+  "workbench.colorTheme": "Dark Horizon",
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.showTabs": "single",
   "workbench.experimental.enableNewProfilesUI": true,
@@ -1651,6 +1653,43 @@
     }
   ],
   "powershell.integratedConsole.suppressStartupBanner": true,
-  "terminal.integrated.cwd": "C:\\Users\\vhtc8\\OneDrive\\projects",
-  "powershell.cwd": "C:\\Users\\vhtc8\\OneDrive\\projects"
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+  },
+  "autoCommentNextLine.list": [
+    {
+      "char": "//",
+      "languages": [
+        "php",
+        "javascript",
+        "typescript",
+        "jsonc",
+        "scss",
+        "sass",
+        "json",
+        "vue",
+        "markdown",
+        "javascriptreact",
+        "typescriptreact"
+      ]
+    },
+    {
+      "char": "#",
+      "languages": ["python", "ruby"]
+    }
+  ]
 }

@@ -191,7 +191,7 @@
     "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "key": "ctrl+alt+a",
+    "key": "alt+a",
     "command": "vscode-better-align.align",
     "when": "editorTextFocus"
   },
@@ -201,7 +201,7 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "ctrl+1",
+    "key": "ctrl+p",
     "command": "expand_region",
     "when": "editorTextFocus"
   },
@@ -437,18 +437,13 @@
     "command": "editor.action.startFindReplaceAction",
     "when": "editorFocus || editorIsOpen"
   },
-  {
-    "key": "ctrl+t",
-    "command": "-workbench.action.showAllSymbols"
-  },
+  // {
+  //   "key": "ctrl+t",
+  //   "command": "-workbench.action.showAllSymbols"
+  // },
   {
     "key": "alt+numpad_divide",
     "command": "editor.action.blockComment"
-  },
-  {
-    "key": "u",
-    "command": "undo",
-    "when": "editorTextFocus && neovim.mode != insert"
   },
   {
     "key": "ctrl+y",
@@ -518,7 +513,7 @@
     "when": "true"
   },
   {
-    "key": "ctrl+p",
+    "key": "ctrl+k p",
     "command": "projectManager.listProjects"
   },
   {
@@ -571,11 +566,6 @@
     "key": "ctrl+f",
     "command": "-editor.action.pageDownHover",
     "when": "editorHoverFocused"
-  },
-  {
-    "key": "ctrl+2",
-    "command": "undo_expand_region",
-    "when": "editorHasSelection && editorTextFocus"
   },
   {
     "key": "ctrl+shift+w",
@@ -736,5 +726,36 @@
     "key": "ctrl+n",
     "command": "-workbench.action.quickOpenSelectNext",
     "when": "inQuickOpen && neovim.mode != 'cmdline'"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-vscode-neovim.send",
+    "when": "editorTextFocus && neovim.ctrlKeysInsert.d && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "-vscode-neovim.send",
+    "when": "editorTextFocus && neovim.ctrlKeysInsert.t && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "-workbench.action.showAllSymbols"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "-vscode-neovim.send",
+    "when": "editorTextFocus && neovim.ctrlKeysNormal.t && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
+  {
+    "key": "ctrl+k c",
+    "command": "-workbench.files.action.compareWithClipboard"
+  },
+  {
+    "key": "ctrl+k c",
+    "command": "workbench.action.files.copyPathOfActiveFile"
+  },
+  {
+    "key": "ctrl+k p",
+    "command": "-workbench.action.files.copyPathOfActiveFile"
   }
 ]

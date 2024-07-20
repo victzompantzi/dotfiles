@@ -1,6 +1,6 @@
 require("zen-mode").setup({
   window = {
-    backdrop = 0.95, 
+    backdrop = 0.95,
     width = 120, -- width of the Zen window
     height = 1, -- height of the Zen window
     options = {
@@ -19,7 +19,7 @@ require("zen-mode").setup({
       enabled = true,
       ruler = true, -- disables the ruler text in the cmd line area
       showcmd = false, -- disables the command in the last line of the screen
-      -- you may turn on/off statusline in zen mode by setting 'laststatus' 
+      -- you may turn on/off statusline in zen mode by setting 'laststatus'
       -- statusline will be shown only if 'laststatus' == 3
       laststatus = 0, -- turn off the statusline in zen mode
     },
@@ -32,4 +32,3 @@ require("zen-mode").setup({
     },
   },
 })
-

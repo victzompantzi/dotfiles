@@ -2,8 +2,8 @@
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 
-    'go', 'lua', 'python', 'rust', 'typescript', 'regex', 
+  ensure_installed = {
+    'go', 'lua', 'python', 'rust', 'typescript', 'regex',
     'bash', 'markdown', 'markdown_inline', 'kdl', 'sql', 'org', 'terraform',
     'html', 'css', 'javascript', 'yaml', 'json', 'toml',
   },
@@ -61,12 +61,11 @@ require('nvim-treesitter.configs').setup {
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+--       ['<leader>a'] = '@parameter.inner',
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+--        ['<leader>A'] = '@parameter.inner',
       },
     },
   },
 }
-

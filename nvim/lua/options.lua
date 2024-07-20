@@ -46,3 +46,7 @@ vim.g.maplocalleader = ' '
 vim.opt.backspace = "indent,eol,start"
 vim.opt.spell = false
 vim.opt.spelllang = { "es", "en" }
+-- vim.opt.shell=powershell
+-- vim.opt.shellcmdflag=-command
+-- vim.opt.shellquote=\"
+-- vim.opt.shellxquote=

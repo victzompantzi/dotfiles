@@ -86,7 +86,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
-alias vim='nvim'
+alias v='nvim'
 alias c='clear'
 alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --no-user --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
 alias bat='batcat'
@@ -122,7 +122,7 @@ export FZF_DEFAULT_COMMAND="fdfind --type f --strip-cwd-prefix --hidden --follow
 export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}'"
 export FZF_COMPLETION_TRIGGER='**'
 export FZF_COMPLETION_OPTS='--border --info=inline'
-export FZF_DEFAULT_OPTS="--height=50% --layout=reverse-list"
+export FZF_DEFAULT_OPTS="-m"
 export PATH="$PATH:$HOME/bin"
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
@@ -132,3 +132,7 @@ export FZF_CTRL_R_OPTS="
   --header 'Press CTRL-Y to copy command into clipboard'"
 # export BAT_CONFIG_PATH='/mnt/c/users/vhtc8/.config/.batrc'
 export PATH=$PATH:/usr/local/go/bin
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
