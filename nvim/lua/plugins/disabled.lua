@@ -10,7 +10,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    enabled = false,
+    enabled = true,
   },
   {
     "hrsh7th/nvim-cmp",

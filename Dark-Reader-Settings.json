@@ -111,33 +111,6 @@
                 "immediateModify": false
             },
             "url": [
-                "marketplace.visualstudio.com"
-            ]
-        },
-        {
-            "theme": {
-                "mode": 1,
-                "brightness": 85,
-                "contrast": 110,
-                "grayscale": 0,
-                "sepia": 20,
-                "useFont": false,
-                "fontFamily": "JetBrains Mono",
-                "textStroke": 0.1,
-                "engine": "dynamicTheme",
-                "stylesheet": "",
-                "darkSchemeBackgroundColor": "#181a1b",
-                "darkSchemeTextColor": "#e8e6e3",
-                "lightSchemeBackgroundColor": "#dcdad7",
-                "lightSchemeTextColor": "#181a1b",
-                "scrollbarColor": "auto",
-                "selectionColor": "auto",
-                "styleSystemControls": false,
-                "lightColorScheme": "Default",
-                "darkColorScheme": "Default",
-                "immediateModify": false
-            },
-            "url": [
                 "www.filmaffinity.com"
             ]
         },
@@ -561,7 +534,16 @@
         "input.djr.com",
         "www.santander.com.mx",
         "ladybird.org",
-        "www.walmart.com.mx"
+        "www.walmart.com.mx",
+        "cvl.unadmexico.mx",
+        "www.datacamp.com",
+        "login.airavirtual.com",
+        "learnsql.com",
+        "ellie.wtf",
+        "www.debian.org",
+        "www.virtualbox.org",
+        "sqlflow.gudusoft.com",
+        "www.figma.com"
     ],
     "enableContextMenus": false,
     "enableForPDF": false,
@@ -569,7 +551,8 @@
     "enabled": true,
     "enabledByDefault": true,
     "enabledFor": [
-        "terminalroot.com"
+        "terminalroot.com",
+        "learn.microsoft.com"
     ],
     "fetchNews": true,
     "location": {
@@ -588,7 +571,7 @@
         "grayscale": 0,
         "sepia": 20,
         "useFont": true,
-        "fontFamily": "MesloLGM Nerd Font",
+        "fontFamily": "Hack Nerd Font Mono",
         "textStroke": 0.1,
         "engine": "dynamicTheme",
         "stylesheet": "",

@@ -6,9 +6,17 @@
 vim.opt.spelllang = { "es", "en" }
 vim.opt.scrolloff = 999
 vim.opt.cul = false
-vim.opt.formatoptions = "tc"
+vim.opt.formatoptions = "tcro/nvjp"
 vim.opt.pumblend = 0
+-- vim.opt.wrap = true
+-- vim.opt.linebreak = true
+vim.opt.textwidth = 72
+vim.opt.backspace = { "eol", "start", "indent" }
+-- vim.opt.whichwrap += { "<", ">", "h", "l" }
+vim.opt.whichwrap = vim.opt.whichwrap + "<"
+vim.opt.whichwrap = vim.opt.whichwrap + ">"
+vim.opt.whichwrap = vim.opt.whichwrap + "h"
+vim.opt.whichwrap = vim.opt.whichwrap + "l"
 -- vim.opt.autoindent = false
 -- vim.opt.cindent = false
 -- vim.opt.smartindent = false
-

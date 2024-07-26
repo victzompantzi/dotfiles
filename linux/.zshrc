@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
@@ -22,9 +22,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Source fzf
-#source <(fzf --zsh)
-
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -34,8 +31,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 # My added plugins VICTZ
-#zinit light ohmyzsh/plugins/ripgrep
-#zinit light ohmyzsh/plugins/tmux
 plugins=(fzf-zsh-plugin) # I don't know if this really works 240602
 
 
@@ -43,11 +38,11 @@ plugins=(fzf-zsh-plugin) # I don't know if this really works 240602
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 zinit snippet OMZP::ubuntu
-zinit snippet OMZP::aws
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::kubectx
+# zinit snippet OMZP::aws
+# zinit snippet OMZP::kubectl
+# zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
-zinit snippet OMZP::tmux
+# zinit snippet OMZP::tmux
 #zinit snippet OMZP::
 
 # Load completions
@@ -85,14 +80,16 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
-alias ls='ls --color'
+alias fs='yazi'
 alias v='nvim'
 alias c='clear'
 alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --no-user --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
 alias bat='batcat'
 # alias fzb="fzf --preview 'batcat -n --color=always --wrap=auto {}'"
 alias rm='rm -I'
-alias clip='xclip -sel c < '
+# alias clip='xclip -sel c < '
+alias cs="xclip -selection clipboard"
+alias ps="xclip -o -selection clipboard"
 
 # alias fzr=""rg --color=always --line-number --no-heading --smart-case "${*:-}" |
 #   fzf --ansi \
@@ -136,3 +133,5 @@ export PATH=$PATH:/usr/local/go/bin
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+# eval $(thefuck --alias)

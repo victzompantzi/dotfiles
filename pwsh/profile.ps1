@@ -10,38 +10,36 @@ Set-PsFzfOption -EnableAliasFuzzyKillProcess
 [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
 # Environment Variables
-$env:BAT_CONFIG_PATH="C:\Users\vhtc8\.config\.batrc"
-$env:RIPGREP_CONFIG_PATH="C:\Users\vhtc8\.config\.ripgreprc"
-$env:FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target --preview 'eza --tree --color=always {} | head -200'"
-$env:FZF_COMPLETION_OPTS='--border --info=inline'
-$env:FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
-$env:FZF_DEFAULT_OPTS="-m"
-$env:FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
-$env:FZF_CTRL_T_OPTS="--preview='bat -n --color=always {}' --height=100% --bind shift-up:preview-page-up,shift-down:preview-page-down"
-$env:PYTHONIOENCODING="utf-8"
+$env:BAT_CONFIG_PATH = "C:\Users\vhtc8\.config\.batrc"
+$env:RIPGREP_CONFIG_PATH = "C:\Users\vhtc8\.config\.ripgreprc"
+$env:FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {}'"
+# $env:FZF_COMPLETION_OPTS='--info=inline-right'
+$env:FZF_DEFAULT_COMMAND = "fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+$env:FZF_DEFAULT_OPTS = "-i --height=100% -m --preview='bat -n --color=always {}' --border=rounded --bind shift-up:preview-page-up,shift-down:preview-page-down"
+$env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' --color header:italic --header 'Press CTRL-Y to copy command and ? to preview it'"
+$env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
-# $env:GIT_SSH = "C:\Windows\system32\OpenSSH\ssh.exe"
+$env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
 
 # * Functions
 function ll {
     eza --color=always --color-scale --long --git --git-repos --icons=always --time=modified --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=extension --links --all --hyperlink
 }
 function yt {
-param (
-    [string]$url
+    param (
+        [string]$url
     )
     yt-dlp --config-location %APPDATA%\yt-dlp\config\config.txt $url
 }
-function fds {
-    fd --type file --full-path | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})' --bind 'ctrl-m:become(mpv {+})'
-}
-# Set-PSReadLineKeyHandler -Key 'Ctrl-b' -ScriptBlock { fd! }
-function Get-DirectorySize{
+# function fds {
+#     fd --type file --full-path | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})' --bind 'ctrl-m:become(mpv {+})'
+# }
+function Get-DirectorySize {
     param($String)
     "{0:N2} GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
 }
-function Get-EmptyDirectories{
-    Get-ChildItem -Directory -Recurse | ForEach-Object{ if($_.GetFiles().Length -eq "0") {$_.FullName}}
+function Get-EmptyDirectories {
+    Get-ChildItem -Directory -Recurse | ForEach-Object { if ($_.GetFiles().Length -eq "0") { $_.FullName } }
 }
 function gs {
     git status
@@ -63,19 +61,22 @@ function chi {
 function chup {
     gsudo choco upgrade all
 }
-
+function chun {
+    param($string)
+    gsudo choco uninstall $string
+}
 function wins {
-param($string)
+    param($string)
     winget search $string
 }
 
 function wini {
-param($string)
+    param($string)
     winget install $string
 }
 
 function winu {
-param($string)
+    param($string)
     winget uninstall $string
 }
 
@@ -89,15 +90,15 @@ function new {
 }
 
 function fr {
-    $script:RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-    $script:OPENER= 'nvim {1} +{2}' # No selection. Open the current line in Vim.
+    $script:RELOAD = 'reload:rg --column --color=always --smart-case {q} || :'
+    $script:OPENER = 'nvim {1} +{2}' # No selection. Open the current line in Vim.
     fzf --disabled --ansi --multi `
-    --bind "start:$script:RELOAD" --bind "change:$script:RELOAD" `
-    --bind "enter:become:$script:OPENER" `
-    --bind "ctrl-o:execute:$script:OPENER" `
-    --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' `
-    --delimiter : `
-    --query "$*"
+        --bind "start:$script:RELOAD" --bind "change:$script:RELOAD" `
+        --bind "enter:become:$script:OPENER" `
+        --bind "ctrl-o:execute:$script:OPENER" `
+        --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' `
+        --delimiter : `
+        --query "$*"
     # --preview 'bat --style=full --color=always --highlight-line {2} {1}' `
     #--preview-window '~4,+{2}+4/3,<80(up)' `
     # Reference in the following link: https://junegunn.github.io/fzf/tips/ripgrep-integration/
@@ -120,10 +121,6 @@ function Get-PublicIp {
     (Invoke-RestMethod -Uri 'http://ifconfig.io/ip').Trim()
 }
 
-function fgc {
-    git checkout $(git branch --all | fzf)
-}
-
 # Alias
 Set-Alias v nvim
 Set-Alias tt tree
@@ -131,7 +128,7 @@ Set-Alias which Get-Command
 Set-Alias man Get-Help
 Set-Alias g git
 Set-Alias kill Invoke-FuzzyKillProcess
-Set-Alias fg Invoke-FuzzyGitStatus
+Set-Alias lg lazygit
 Set-Alias c Clear-Host
 Set-Alias fs yazi
 Set-Alias ch choco
@@ -142,7 +139,7 @@ Set-Alias w winget
 Import-Module posh-git
 
 # Init o-m-p
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\tokyonight_storm.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\uew.omp.json" | Invoke-Expression
 
 # Init Terminal Icons
 Import-Module -Name Terminal-Icons
@@ -167,12 +164,12 @@ Set-PSReadLineOption -TerminateOrphanedConsoleApps
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta'; comment="`e[92m"}
+Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta'; comment = "`e[92m" }
 
-Set-PSReadLineKeyHandler -Chord '"',"'" `
--BriefDescription SmartInsertQuote `
--LongDescription "Insert paired quotes if not already on a quote" `
--ScriptBlock {
+Set-PSReadLineKeyHandler -Chord '"', "'" `
+    -BriefDescription SmartInsertQuote `
+    -LongDescription "Insert paired quotes if not already on a quote" `
+    -ScriptBlock {
     param($key, $arg)
     $line = $null
     $cursor = $null
@@ -193,8 +190,12 @@ Set-PSReadLineKeyHandler -Chord '"',"'" `
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
 
-fnm env --use-on-cd | Out-String | Invoke-Expression
+# fnm env --use-on-cd | Out-String | Invoke-Expression
 
 Invoke-Expression "$(thefuck --alias)"
+
+Invoke-Expression (& { (gh completion -s powershell | Out-String) })
+
+. "F:\Documents\PowerShell\gh-copilot.ps1"
 
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
