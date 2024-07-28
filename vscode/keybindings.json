@@ -197,11 +197,6 @@
     "command": "-workbench.action.addComment"
   },
   {
-    "key": "ctrl+shift+numpad_divide",
-    "command": "editor.action.removeCommentLine",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
     "key": "ctrl+k ctrl+u",
     "command": "-editor.action.removeCommentLine",
     "when": "editorTextFocus && !editorReadonly"
@@ -703,5 +698,30 @@
     "key": "ctrl+alt+r",
     "command": "-reactSnippets.search",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+k o",
+    "command": "-workbench.action.copyEditorToNewWindow",
+    "when": "activeEditor"
+  },
+  {
+    "key": "ctrl+k o",
+    "command": "workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  },
+  {
+    "key": "ctrl+k ctrl+o",
+    "command": "-workbench.action.files.openFolder",
+    "when": "openFolderWorkspaceSupport"
+  },
+  {
+    "key": "ctrl+k o",
+    "command": "workbench.action.files.openLocalFolder",
+    "when": "remoteFileDialogVisible"
+  },
+  {
+    "key": "ctrl+k ctrl+o",
+    "command": "-workbench.action.files.openLocalFolder",
+    "when": "remoteFileDialogVisible"
   }
 ]

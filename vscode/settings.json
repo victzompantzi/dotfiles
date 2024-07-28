@@ -1,9 +1,6 @@
 {
-  "C_Cpp.default.intelliSenseMode": "clang-x64",
-  "C_Cpp.intelliSenseEngine": "disabled",
-  "C_Cpp.loggingLevel": "Warning",
   "[c]": {
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    "editor.defaultFormatter": "ms-vscode.cpptools"
   },
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
@@ -323,12 +320,8 @@
       "value": "#42b883"
     }
   ],
-  "powershell.buttons.showPanelMovementButtons": true,
-  "powershell.codeFolding.showLastLine": false,
-  "powershell.integratedConsole.focusConsoleOnExecute": false,
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.integratedConsole.suppressStartupBanner": true,
-  "powershell.pester.codeLens": false,
   "prettier.endOfLine": "auto",
   "prettier.eslintIntegration": true,
   "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
@@ -372,20 +365,12 @@
     "borderWidth": "1px"
   },
   "tabnine.experimentalAutoImports": true,
-  "terminal.external.windowsExec": "wt",
-  "terminal.integrated.automationProfile.windows": {
-    "path": "pwsh --noprofile"
-  },
   "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.enableImages": true,
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.enableVisualBell": true,
-  "terminal.integrated.fontFamily": "MesloLGM Nerd Font Mono",
+  "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.hideOnStartup": "always",
-  "terminal.integrated.middleClickBehavior": "paste",
-  "terminal.integrated.mouseWheelZoom": true,
-  "terminal.integrated.persistentSessionReviveProcess": "never",
   "typescript.tsserver.log": "off",
   "update.mode": "start",
   "vim.easymotion": true,
@@ -483,5 +468,6 @@
     "editor.suggest.showStatusBar",
     "editor.fontFamily"
   ],
-  "workbench.startupEditor": "welcomePageInEmptyWorkbench"
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "C_Cpp.intelliSenseEngine": "disabled"
 }

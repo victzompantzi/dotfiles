@@ -20,6 +20,7 @@ $env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap 
 $env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
 $env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
+$env:BW_SESSION = "MDI/v+bJirHT9CsqxphHY6OAUFxlfmT4xMSjyVpqAJp3M75Xhrg8jB1tM4Q7a6dpWXvh/3wZrwpLPnH1YxJTuA=="
 
 # * Functions
 function ll {
@@ -54,9 +55,13 @@ function chs {
     param($String)
     choco search $String
 }
-function chi {
+function chin {
     param($String)
     gsudo choco install $String
+}
+function chinfo {
+    param($String)
+    choco info $String
 }
 function chup {
     gsudo choco upgrade all
@@ -65,17 +70,17 @@ function chun {
     param($string)
     gsudo choco uninstall $string
 }
-function wins {
+function ws {
     param($string)
     winget search $string
 }
 
-function wini {
+function win {
     param($string)
     winget install $string
 }
 
-function winu {
+function wun {
     param($string)
     winget uninstall $string
 }
@@ -91,20 +96,19 @@ function new {
 
 function fr {
     $script:RELOAD = 'reload:rg --column --color=always --smart-case {q} || :'
-    $script:OPENER = 'nvim {1} +{2}' # No selection. Open the current line in Vim.
-    fzf --disabled --ansi --multi `
+    fzf --disabled --ansi `
         --bind "start:$script:RELOAD" --bind "change:$script:RELOAD" `
-        --bind "enter:become:$script:OPENER" `
-        --bind "ctrl-o:execute:$script:OPENER" `
-        --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' `
+        --bind 'enter:become:nvim {1} +{2}' `
+        --bind 'ctrl-o:execute:nvim {1} +{2}' `
         --delimiter : `
-        --query "$*"
-    # --preview 'bat --style=full --color=always --highlight-line {2} {1}' `
-    #--preview-window '~4,+{2}+4/3,<80(up)' `
-    # Reference in the following link: https://junegunn.github.io/fzf/tips/ripgrep-integration/
+        --preview 'bat --style=full --color=always --highlight-line {2} {1}' `
+        --preview-window '~4,+{2}+4/3,<80(up)' `
+        --query "$*" `
+        --header 'Press ENTER to open with Nvim or press C-o to open with Nvim and return to FZF'
+    # Reference in the following link: https://junegunn.github.io/fzf/tips/ripgrep-integration/"
 }
 
-function fe {
+function ze {
     param($string)
     cde $string
 }
@@ -139,7 +143,7 @@ Set-Alias w winget
 Import-Module posh-git
 
 # Init o-m-p
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\uew.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\ys.omp.json" | Invoke-Expression
 
 # Init Terminal Icons
 Import-Module -Name Terminal-Icons
@@ -149,6 +153,9 @@ Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 
 # Completion Predictor
 Import-Module -Name CompletionPredictor
+
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+#f45873b3-b655-43a6-b217-97c00aa0db58
 
 # PSReadLine Options
 # ! Add KeyHandlers
@@ -187,12 +194,6 @@ Set-PSReadLineKeyHandler -Chord '"', "'" `
 }
 
 # Utilities
-Import-Module -Name Microsoft.WinGet.CommandNotFound
-#f45873b3-b655-43a6-b217-97c00aa0db58
-
-# fnm env --use-on-cd | Out-String | Invoke-Expression
-
-Invoke-Expression "$(thefuck --alias)"
 
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
