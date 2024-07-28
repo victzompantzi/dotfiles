@@ -15,7 +15,6 @@ vim.opt.pumblend = 0
 vim.opt.textwidth = 500
 vim.opt.wm = 0
 vim.opt.backspace = { "eol", "start", "indent" }
-vim.opt.shell = pwsh
 -- tw=0 fo=cqt wm=5:
 -- vim.opt.whichwrap += { "<", ">", "h", "l" }
 -- vim.opt.whichwrap = vim.opt.whichwrap + "<"
