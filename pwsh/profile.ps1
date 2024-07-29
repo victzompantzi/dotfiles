@@ -32,44 +32,40 @@ function yt {
     )
     yt-dlp --config-location %APPDATA%\yt-dlp\config\config.txt $url
 }
-# function fds {
-#     fd --type file --full-path | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})' --bind 'ctrl-m:become(mpv {+})'
-# }
+
 function Get-DirectorySize {
     param($String)
     "{0:N2} GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
 }
+
 function Get-EmptyDirectories {
     Get-ChildItem -Directory -Recurse | ForEach-Object { if ($_.GetFiles().Length -eq "0") { $_.FullName } }
 }
-function gs {
-    git status
-}
-function gg {
-    git log --all --decorate --oneline --graph
-}
-function g. {
-    git add .
-}
+
 function chs {
     param($String)
     choco search $String
 }
+
 function chin {
     param($String)
     gsudo choco install $String
 }
+
 function chinfo {
     param($String)
     choco info $String
 }
+
 function chup {
     gsudo choco upgrade all
 }
+
 function chun {
     param($string)
     gsudo choco uninstall $string
 }
+
 function ws {
     param($string)
     winget search $string
