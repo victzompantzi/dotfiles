@@ -1,3 +1,5 @@
+# Reference: https://gthub.com/dreamsofautonomy/zensh/blob/main/.zshrc
+# Install fzf: https://askubuntu.com/questions/1515760/unknown-option-bash-when-opening-the-terminal
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -9,6 +11,9 @@ if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+fpath+=( ~/.zfuncs "${fpath[@]}" )
+export fpath
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -41,12 +46,13 @@ zinit snippet OMZP::ubuntu
 # zinit snippet OMZP::aws
 # zinit snippet OMZP::kubectl
 # zinit snippet OMZP::kubectx
-zinit snippet OMZP::command-not-found
+# zinit snippet OMZP::command-not-found
 # zinit snippet OMZP::tmux
-#zinit snippet OMZP::
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit -u && compinit -u
+autoload -Uz f
+autoload -Uz fr
 
 zinit cdreplay -q
 
@@ -71,38 +77,53 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt extended_glob
+setopt dot_glob
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath'
+# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --tree --color=always $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink $realpath'
 
 # Aliases
-alias fs='yazi'
+# export EDITOR=$(which nvim)
+# alias v="$EDITOR"
+alias fe='yazi'
 alias v='nvim'
 alias c='clear'
-alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --no-user --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
-alias bat='batcat'
-# alias fzb="fzf --preview 'batcat -n --color=always --wrap=auto {}'"
+alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
+alias -g bat='batcat'
 alias rm='rm -I'
 # alias clip='xclip -sel c < '
-alias cs="xclip -selection clipboard"
-alias ps="xclip -o -selection clipboard"
+alias clip="xclip -selection clipboard"
+alias paste="xclip -o -selection clipboard"
+alias des='trans es:en -d'
+alias den='trans en:es -d'
+alias sup='sudo apt update && sudo apt upgrade'
+alias lv='nvim -c "normal '\''0"'
+# alias -g W='| nvim -c "setlocal buftype=nofile bufhidden=wipe" -c "nnoremap <buffer> q :q!<CR>" -'
+# alias teln="rg --files | fzf --border-label='[ File search ]' --preview 'batcat --style=numbers --color=always --line-range :100 {}' | xargs nvim "
+# alias MANPAGER='nvim +Man!'
+# fuzzy find file with preview
+# alias pf="
+# fzf --bind ctrl-y:preview-up,ctrl-e:preview-down \
+# --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down \
+# --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down \
+# --bind ctrl-k:up,ctrl-j:down \
+# --preview='(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null'  
+# "
+# # open file with fzf
+# alias viz="for file in \`pf\`; do cmd=\"vim \$file\" && print -rs -- \$cmd && eval \$cmd; done"
 
-# alias fzr=""rg --color=always --line-number --no-heading --smart-case "${*:-}" |
-#   fzf --ansi \
-#       --color "hl:-1:underline,hl+:-1:underline:reverse" \
-#       --delimiter : \
-#       --preview 'bat --color=always {1} --highlight-line {2}' \
-#       --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-#       --bind 'enter:become(nvim {1} +{2})'""
 
 # Shell integrations
-#eval "$(fzf --zsh)"
+# source <(fzf --zsh)
+# eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-#typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # To hide the error message of the bug described in this link: "https://github.com/romkatv/powerlevel10k/issues/1554"
@@ -110,28 +131,40 @@ unset ZSH_AUTOSUGGEST_USE_ASYNC
 
 # Environment Variables -- 240530
 export XDG_SESSION_TYPE=wayland
-eval "$(~/.local/bin/mise activate zsh)"
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/mnt/c/Program\ Files/Java/jdk-22/bin"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-export FZF_DEFAULT_COMMAND="fdfind --type f --strip-cwd-prefix --hidden --follow --exclude .git"
-export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}'"
-export FZF_COMPLETION_TRIGGER='**'
-export FZF_COMPLETION_OPTS='--border --info=inline'
-export FZF_DEFAULT_OPTS="-m"
+export FZF_ALT_C_OPTS="--preview 'eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink {}'"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+# export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}'"
+# export FZF_COMPLETION_TRIGGER='**'
+# export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_DEFAULT_OPTS="-i -m --height=100% --preview='batcat -n --color=always {}'"
+# export FZF_DEFAULT_OPTS="-i --height=100%"
 export PATH="$PATH:$HOME/bin"
-export FZF_CTRL_R_OPTS="
-  --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
+# export FZF_CTRL_R_OPTS="--preview 'echo {}'
+                        # --preview-window down:3:hidden:wrap 
+                        # --bind '?:toggle-preview' 
+                        # --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' 
+                        # --color header:italic 
+                        # --header 'Press CTRL-Y to copy command and ? to preview it'"
 # export BAT_CONFIG_PATH='/mnt/c/users/vhtc8/.config/.batrc'
+export RIPGREP_CONFIG_PATH='/mnt/c/users/vhtc8/.config/.ripgreprc'
 export PATH=$PATH:/usr/local/go/bin
 
+# FZF Shell Compeltion
+eval "$(fzf --zsh)"
+
+# Mise activate
+eval "$(~/.local/bin/mise activate zsh)"
+
+# Atuin
 . "$HOME/.atuin/bin/env"
-
+export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
+eval "$(atuin gen-completions --shell zsh)"
+bindkey '^r' atuin-search
 
-# eval $(thefuck --alias)
+# bind to the up key, which depends on terminal mode
+bindkey ';5A' atuin-up-search
+# bindkey '^[OA' atuin-up-search

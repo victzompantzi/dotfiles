@@ -4,6 +4,13 @@
     "actions": 
     [
         {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            }
+        },
+        {
             "command": "unbound",
             "keys": "alt+numpad0"
         },
@@ -60,13 +67,6 @@
             "keys": "alt+enter"
         },
         {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            }
-        },
-        {
             "command": "openSystemMenu"
         },
         {
@@ -80,18 +80,18 @@
         {
             "command": 
             {
-                "action": "searchWeb"
-            },
-            "keys": "ctrl+\\"
-        },
-        {
-            "command": 
-            {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": 
+            {
+                "action": "searchWeb"
+            },
+            "keys": "ctrl+\\"
         },
         {
             "command": 
@@ -102,10 +102,6 @@
             "keys": "ctrl+numpad_period"
         },
         {
-            "command": "resetFontSize",
-            "keys": "ctrl+numpad0"
-        },
-        {
             "command": "showContextMenu"
         },
         {
@@ -114,6 +110,10 @@
                 "action": "commandPalette"
             },
             "keys": "f1"
+        },
+        {
+            "command": "resetFontSize",
+            "keys": "ctrl+numpad0"
         },
         {
             "command": "togglePaneZoom",
@@ -173,7 +173,7 @@
             {
                 "cellHeight": "1.4",
                 "face": "Hack Nerd Font Mono",
-                "size": 18.0,
+                "size": 19.0,
                 "weight": "normal"
             },
             "intenseTextStyle": "bright",
@@ -208,13 +208,13 @@
                 {
                     "cellHeight": "1.4",
                     "face": "Hack Nerd Font Mono",
-                    "size": 18.0,
+                    "size": 16.0,
                     "weight": "normal"
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
-                "opacity": 80,
+                "opacity": 85,
                 "scrollbarState": "hidden",
                 "source": "Windows.Terminal.PowershellCore",
                 "useAcrylic": true
@@ -249,12 +249,12 @@
                 {
                     "cellHeight": "1.4",
                     "face": "Hack Nerd Font Mono",
-                    "size": 18.0
+                    "size": 16.0
                 },
                 "guid": "{acbafd15-cbbb-5bb3-8a61-bed446ff4b83}",
                 "hidden": false,
                 "name": "Ubuntu 24.04 LTS",
-                "opacity": 80,
+                "opacity": 85,
                 "source": "CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc",
                 "startingDirectory": "~"
             }

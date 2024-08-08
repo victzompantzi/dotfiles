@@ -15,12 +15,13 @@ vim.opt.pumblend = 0
 vim.opt.textwidth = 500
 vim.opt.wm = 0
 vim.opt.backspace = { "eol", "start", "indent" }
+-- require("transparent").clear_prefix("lualine")
 -- tw=0 fo=cqt wm=5:
 -- vim.opt.whichwrap += { "<", ">", "h", "l" }
--- vim.opt.whichwrap = vim.opt.whichwrap + "<"
--- vim.opt.whichwrap = vim.opt.whichwrap + ">"
--- vim.opt.whichwrap = vim.opt.whichwrap + "h"
--- vim.opt.whichwrap = vim.opt.whichwrap + "l"
--- vim.opt.autoindent = false
--- vim.opt.cindent = false
--- vim.opt.smartindent = false
+vim.opt.whichwrap = vim.opt.whichwrap + "b"
+vim.opt.whichwrap = vim.opt.whichwrap + "s"
+vim.opt.whichwrap = vim.opt.whichwrap + "<"
+vim.opt.whichwrap = vim.opt.whichwrap + ">"
+vim.opt.whichwrap = vim.opt.whichwrap + "h"
+vim.opt.whichwrap = vim.opt.whichwrap + "l"
+vim.diagnostic.enable(false)

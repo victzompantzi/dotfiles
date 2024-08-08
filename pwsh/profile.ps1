@@ -3,7 +3,8 @@ Import-Module PSEverything
 # PsFzf Options
 Import-Module PSFzf
 Set-PsFzfOption -TabExpansion
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+UpArrow'
+Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
+Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+UpArrow'
 Set-PsFzfOption -EnableAliasFuzzySetEverything
 Set-PsFzfOption -EnableAliasFuzzyKillProcess
 # set PowerShell to UTF-8
@@ -12,30 +13,29 @@ Set-PsFzfOption -EnableAliasFuzzyKillProcess
 # Environment Variables
 $env:BAT_CONFIG_PATH = "C:\Users\vhtc8\.config\.batrc"
 $env:RIPGREP_CONFIG_PATH = "C:\Users\vhtc8\.config\.ripgreprc"
-$env:FZF_ALT_C_OPTS = "--preview 'eza --tree --color=always {}'"
-# $env:FZF_COMPLETION_OPTS='--info=inline-right'
-$env:FZF_DEFAULT_COMMAND = "fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
-$env:FZF_DEFAULT_OPTS = "-i --height=100% -m --preview='bat -n --color=always {}' --border=rounded --bind shift-up:preview-page-up,shift-down:preview-page-down"
+$env:FZF_ALT_C_OPTS = "--walker-skip .git,node_modules,target --preview 'eza --color=always --color-scale --long --no-git --icons=always  --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=name --links --all --hyperlink --modified --icons=always {}'"
+$env:FZF_DEFAULT_COMMAND = "fd --type f --preview='bat -n --color=always {}' --hidden --exclude .git --follow --strip-cwd-prefix"
+$env:FZF_DEFAULT_OPTS = "-i --height=100% -m --border=rounded"
 $env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' --color header:italic --header 'Press CTRL-Y to copy command and ? to preview it'"
 $env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
 $env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
 $env:BW_SESSION = "MDI/v+bJirHT9CsqxphHY6OAUFxlfmT4xMSjyVpqAJp3M75Xhrg8jB1tM4Q7a6dpWXvh/3wZrwpLPnH1YxJTuA=="
+$env:RUST_BACKTRACE = 1
+$env:RUST_BACKTRACE = "full"
 
 # * Functions
 function ll {
-    eza --color=always --color-scale --long --git --git-repos --icons=always --time=modified --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=extension --links --all --hyperlink
+    eza --color=always --color-scale --long --no-git --icons=always  --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=name --links --all --hyperlink --modified --icons=always
 }
-function yt {
-    param (
-        [string]$url
-    )
-    yt-dlp --config-location %APPDATA%\yt-dlp\config\config.txt $url
+
+function lv {
+    nvim -c "normal '0"
 }
 
 function Get-DirectorySize {
     param($String)
-    "{0:N2} GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
+    "{ 0:N2 } GB" -F ((Get-ChildItem $String -Recurse | Measure-Object -Property Length -Sum).Sum / 1GB)
 }
 
 function Get-EmptyDirectories {
@@ -66,6 +66,19 @@ function chun {
     gsudo choco uninstall $string
 }
 
+Set-PSReadlineKeyHandler -Chord Ctrl+f `
+    -BriefDescription fzf `
+    -LongDescription "Find and open files" `
+    -ScriptBlock {
+    fd --type file --full-path --hidden --follow --exclude .git | fzf --prompt 'Files> ' `
+        --header 'Enter - Nvim / C-e VSCode / C-p - Toggle preview / C-d - Delete' `
+        --preview 'bat -n --style numbers,changes --color=always {}' `
+        --bind 'Enter:become(code {+})' `
+        --bind 'ctrl-p:toggle-preview' `
+        --bind='ctrl-d:execute(rm {+})'
+    # --bind 'ctrl-e:become(nvim {+})'
+}
+
 function ws {
     param($string)
     winget search $string
@@ -79,6 +92,13 @@ function win {
 function wun {
     param($string)
     winget uninstall $string
+}
+
+function yt {
+    param (
+        [string]$url
+    )
+    yt-dlp --config-location %APPDATA%\yt-dlp\config\config.txt $url
 }
 
 function pw {
@@ -121,7 +141,7 @@ function Get-PublicIp {
     (Invoke-RestMethod -Uri 'http://ifconfig.io/ip').Trim()
 }
 
-# Alias
+# * Alias
 Set-Alias v nvim
 Set-Alias tt tree
 Set-Alias which Get-Command
@@ -130,16 +150,19 @@ Set-Alias g git
 Set-Alias kill Invoke-FuzzyKillProcess
 Set-Alias lg lazygit
 Set-Alias c Clear-Host
-Set-Alias fs yazi
+Set-Alias fe yazi
 Set-Alias ch choco
 Set-Alias rms Remove-ItemSafely
 Set-Alias w winget
+Set-Alias ds gdu
+Set-Alias top btop
+Set-Alias ldo lazydocker
 
 # Init posh-git
 Import-Module posh-git
 
 # Init o-m-p
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\ys.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\xtoys.omp.json" | Invoke-Expression
 
 # Init Terminal Icons
 Import-Module -Name Terminal-Icons
@@ -154,7 +177,6 @@ Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
 
 # PSReadLine Options
-# ! Add KeyHandlers
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Escape,_' -Function YankLastArg

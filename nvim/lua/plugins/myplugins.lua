@@ -64,7 +64,7 @@ return {
     },
     opts = {
       -- configurations go here
-      theme = "tokyonight-night",
+      theme = "rose-pine-moon",
     },
   },
   {
@@ -101,6 +101,67 @@ return {
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "rose-pine-moon",
+    },
+  },
+  { "rose-pine/neovim", name = "rose-pine" },
+  { "xiyaowong/transparent.nvim" },
+  -- {
+  --   "ibhagwan/fzf-lua",
+  --   -- optional for icon support
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     -- calling `setup` is optional for customization
+  --     require("fzf-lua").setup({})
+  --   end,
+  -- },
+  -- -- lazy.nvim:
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvimtools/hydra.nvim",
+    },
+    opts = {},
+    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+    keys = {
+      {
+        mode = { "v", "n" },
+        "<Leader>m",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for selected text or word under the cursor",
+      },
+    },
+  },
+  {
+    "sindrets/diffview.nvim",
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false, -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+      -- You will not need this if you installed the
+      -- parsers manually
+      -- Or if the parsers are in your $RUNTIMEPATH
+      "nvim-treesitter/nvim-treesitter",
+
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    requires = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+
+      -- see below for full list of optional dependencies 👇
     },
   },
 }

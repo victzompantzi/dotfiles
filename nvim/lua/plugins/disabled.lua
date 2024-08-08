@@ -4,9 +4,17 @@ return {
     "lukas-reineke/headlines.nvim",
     enabled = false,
   },
+  -- lazy.nvim
   {
     "folke/noice.nvim",
-    enabled = false,
+    enabled = true,
+    opts = {
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+      },
+    },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -14,7 +22,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    enabled = false,
+    enabled = true,
   },
   {
     "nvim-lualine/lualine.nvim",
@@ -45,18 +53,49 @@ return {
       },
     },
   },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   opts = {
+  --     transparent = true,
+  --     styles = {
+  --       sidebars = "transparent",
+  --       floats = "transparent",
+  --     },
+  --   },
+  -- },
   {
-    "folke/tokyonight.nvim",
+    "lukas-reineke/indent-blankline.nvim",
+    enabled = true,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
     opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
       },
     },
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    enabled = false,
+    "nvim-treesitter-textobjects",
+    enabled = true,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      inlay_hints = { enabled = true },
+    },
   },
 }
