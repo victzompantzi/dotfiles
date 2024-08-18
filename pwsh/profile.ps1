@@ -4,7 +4,7 @@ Import-Module PSEverything
 Import-Module PSFzf
 Set-PsFzfOption -TabExpansion
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
-Set-PsFzfOption -PSReadlineChordReverseHistory 'Ctrl+UpArrow'
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+UpArrow'
 Set-PsFzfOption -EnableAliasFuzzySetEverything
 Set-PsFzfOption -EnableAliasFuzzyKillProcess
 # set PowerShell to UTF-8
@@ -14,8 +14,8 @@ Set-PsFzfOption -EnableAliasFuzzyKillProcess
 $env:BAT_CONFIG_PATH = "C:\Users\vhtc8\.config\.batrc"
 $env:RIPGREP_CONFIG_PATH = "C:\Users\vhtc8\.config\.ripgreprc"
 $env:FZF_ALT_C_OPTS = "--walker-skip .git,node_modules,target --preview 'eza --color=always --color-scale --long --no-git --icons=always  --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=name --links --all --hyperlink --modified --icons=always {}'"
-$env:FZF_DEFAULT_COMMAND = "fd --type f --preview='bat -n --color=always {}' --hidden --exclude .git --follow --strip-cwd-prefix"
-$env:FZF_DEFAULT_OPTS = "-i --height=100% -m --border=rounded"
+$env:FZF_DEFAULT_COMMAND = "fd --type f --preview='bat -n --style numbers,changes --color=always {}' --hidden --exclude .git --follow --strip-cwd-prefix"
+$env:FZF_DEFAULT_OPTS = "-i --height=100% --border=rounded"
 $env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' --color header:italic --header 'Press CTRL-Y to copy command and ? to preview it'"
 $env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
@@ -66,18 +66,16 @@ function chun {
     gsudo choco uninstall $string
 }
 
-Set-PSReadlineKeyHandler -Chord Ctrl+f `
-    -BriefDescription fzf `
-    -LongDescription "Find and open files" `
-    -ScriptBlock {
-    fd --type file --full-path --hidden --follow --exclude .git | fzf --prompt 'Files> ' `
-        --header 'Enter - Nvim / C-e VSCode / C-p - Toggle preview / C-d - Delete' `
-        --preview 'bat -n --style numbers,changes --color=always {}' `
-        --bind 'Enter:become(code {+})' `
-        --bind 'ctrl-p:toggle-preview' `
-        --bind='ctrl-d:execute(rm {+})'
-    # --bind 'ctrl-e:become(nvim {+})'
-}
+# Set-PSReadlineKeyHandler -Chord Ctrl+f `
+#     -BriefDescription fzf `
+#     -LongDescription "Find and open files" `
+#     -ScriptBlock {
+#         fds
+#     }
+#
+# function fds {
+#     fd --type f --full-path --hidden --follow --exclude .git | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --style numbers,changes --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})'
+# }
 
 function ws {
     param($string)

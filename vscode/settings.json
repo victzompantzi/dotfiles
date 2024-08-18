@@ -1,7 +1,6 @@
 {
-  "C_Cpp.intelliSenseEngine": "disabled",
   "[c]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools"
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[csharp]": {
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
@@ -10,13 +9,17 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[javascript]": {
-    "editor.maxTokenizationLineLength": 2500
+    "editor.maxTokenizationLineLength": 2500,
+    "editor.tabSize": 2
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
   "[mysql]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
@@ -28,8 +31,11 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
+  },
+  "[sass]": {
+    "editor.tabSize": 2
   },
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -114,6 +120,19 @@
     }
   ],
   "black-formatter.importStrategy": "fromEnvironment",
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "clangd.checkUpdates": true,
+  "clangd.path": "C:\\clang+llvm-18.1.8-x86_64-pc-windows-msvc\\bin\\clangd.exe",
+  "cloudcode.autoDependencies": "off",
+  "cmake.configureOnOpen": true,
+  "cmake.options.statusBarVisibility": "compact",
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "cmake.showOptionsMovedNotification": false,
+  "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
+  "commentTranslate.targetLanguage": "es",
   "cSpell.enableFiletypes": ["!c"],
   "cSpell.ignoreWords": ["vhtc"],
   "cSpell.language": "en,es",
@@ -128,18 +147,6 @@
     "Poniatowska",
     "Suscríbete"
   ],
-  "clangd.checkUpdates": true,
-  "clangd.path": "C:\\clang+llvm-18.1.8-x86_64-pc-windows-msvc\\bin\\clangd.exe",
-  "cloudcode.autoDependencies": "off",
-  "cmake.configureOnOpen": true,
-  "cmake.options.statusBarVisibility": "compact",
-  "cmake.pinnedCommands": [
-    "workbench.action.tasks.configureTaskRunner",
-    "workbench.action.tasks.runTask"
-  ],
-  "cmake.showOptionsMovedNotification": false,
-  "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
-  "commentTranslate.targetLanguage": "es",
   "debug.onTaskErrors": "debugAnyway",
   "debug.openDebug": "neverOpen",
   "debug.showBreakpointsInOverviewRuler": true,
@@ -164,9 +171,10 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": false,
   "editor.fontFamily": "Hack Nerd Font Mono",
   "editor.fontLigatures": true,
-  "editor.fontSize": 17,
+  "editor.fontSize": 16,
   "editor.fontWeight": "600",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -183,6 +191,7 @@
   "editor.minimap.maxColumn": 120,
   "editor.minimap.showSlider": "always",
   "editor.mouseWheelZoom": true,
+  "editor.occurrencesHighlight": "off",
   "editor.overviewRulerBorder": false,
   // Enable parameter hints
   "editor.parameterHints.enabled": true,
@@ -192,8 +201,7 @@
     "other": true,
     "strings": false
   },
-  // Controls the delay in ms after which quick suggestions will show up.
-  "editor.quickSuggestionsDelay": 10,
+  "editor.renderWhitespace": "all",
   "editor.scrollbar.vertical": "visible",
   "editor.scrollbar.verticalScrollbarSize": 10,
   "editor.semanticHighlighting.enabled": "configuredByTheme",
@@ -208,6 +216,7 @@
   "editor.suggestSelection": "first",
   // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
   "editor.tabCompletion": "on",
+  "editor.tabSize": 4,
   // Enable word based suggestions
   "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
@@ -242,15 +251,14 @@
   },
   "files.autoGuessEncoding": true,
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 4000,
+  "files.autoSaveDelay": 5000,
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.encoding": "utf8",
   "files.eol": "\r\n",
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
-  "gitProjectManager.baseProjectsFolders": ["~/OneDrive/projects"],
-  "gitProjectManager.ignoredFolders": ["node_modules"],
+  "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": false,
     "markdown": false,
@@ -258,6 +266,11 @@
     "scminput": false
   },
   "gitlens.mode.active": "zen",
+  "gitProjectManager.baseProjectsFolders": ["~/OneDrive/projects"],
+  "gitProjectManager.displayProjectPath": true,
+  "gitProjectManager.ignoredFolders": ["node_modules"],
+  "gitProjectManager.openInNewWindow": true,
+  "gitProjectManager.storeRepositoriesBetweenSessions": true,
   // SOP's highlight matching tag setting.
   "highlight-matching-tag.styles": {
     "opening": {
@@ -266,18 +279,20 @@
       }
     }
   },
-  // For which languages indent-rainbow should be deactivated (if empty it means none).
-  "indentRainbow.excludedLanguages": ["plaintext"], // 10 makes it super fast but may cost more resources
   "indenticator.color.dark": "rgba(255,255,255,0.1)",
   "indenticator.inner.color.dark": "#ff00ff",
   "indenticator.inner.showIndentGuide": false,
   "indenticator.showHover": true,
   "indenticator.width": 0.1,
+  // For which languages indent-rainbow should be deactivated (if empty it means none).
+  "indentRainbow.excludedLanguages": ["plaintext"], // 10 makes it super fast but may cost more resources
   "js/ts.implicitProjectConfig.checkJs": true,
   "launch": {
     "configurations": []
   },
   "liveServer.settings.donotShowInfoMsg": true,
+  "markdown-preview-enhanced.codeBlockTheme": "auto.css",
+  "markdown-preview-enhanced.previewTheme": "one-dark.css",
   "obsidian-md-vsc.defaultNote": "Computer Science\\VSCode\\projects",
   "obsidian-md-vsc.defaultVault": "Obsidian Vault",
   "obsidian-md-vsc.defaultVaultPath": "C:\\Users\\vhtc8\\OneDrive\\OneSyncFiles\\Obsidian Vault",
@@ -321,6 +336,7 @@
   ],
   "powershell.integratedConsole.showOnStartup": false,
   "powershell.integratedConsole.suppressStartupBanner": true,
+  "prettier.endOfLine": "auto",
   "prettier.eslintIntegration": true,
   "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
   "projectManager.hg.baseFolders": ["C:\\Users\\vhtc8\\projects"],
@@ -390,6 +406,7 @@
   "vscode-neovim.neovimClean": false,
   "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
   "vscode-neovim.revealCursorScrollLine": true,
+  "window.newWindowProfile": "Default",
   "window.titleBarStyle": "custom",
   "workbench.colorTheme": "Rosé Pine Moon",
   "workbench.editor.empty.hint": "hidden",
@@ -404,12 +421,12 @@
     "editor.tabSize"
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "gitProjectManager.openInNewWindow": true,
-  "gitProjectManager.displayProjectPath": true,
-  "gitProjectManager.storeRepositoriesBetweenSessions": true,
-  "editor.occurrencesHighlight": "off",
   "zenMode.showTabs": "none",
-  "editor.renderWhitespace": "all",
-  "git.openRepositoryInParentFolders": "never",
-  "editor.tabSize": 2
+  "gitProjectManager.maxDepthRecursion": -1,
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

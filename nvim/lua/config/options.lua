@@ -5,23 +5,24 @@
 -- http://blog.ezyang.com/2010/03/vim-textwidth/
 -- Add any additional options here
 vim.opt.spelllang = { "es", "en" }
-vim.opt.scrolloff = 999
+-- vim.opt.scrolloff = 999
 vim.opt.cul = false
 -- vim.opt.formatoptions = "tcro/nvjp"
-vim.opt.formatoptions = "tcq"
+-- vim.opt.formatoptions = "tqo/ln"
 vim.opt.pumblend = 0
--- vim.opt.wrap = true
+vim.opt.list = false
+vim.opt.wrap = true
 -- vim.opt.linebreak = true
-vim.opt.textwidth = 500
-vim.opt.wm = 0
+-- vim.opt.textwidth = 0
+-- vim.opt.columns = 80
+-- vim.opt.wm = 0
 vim.opt.backspace = { "eol", "start", "indent" }
--- require("transparent").clear_prefix("lualine")
--- tw=0 fo=cqt wm=5:
--- vim.opt.whichwrap += { "<", ">", "h", "l" }
-vim.opt.whichwrap = vim.opt.whichwrap + "b"
-vim.opt.whichwrap = vim.opt.whichwrap + "s"
-vim.opt.whichwrap = vim.opt.whichwrap + "<"
-vim.opt.whichwrap = vim.opt.whichwrap + ">"
-vim.opt.whichwrap = vim.opt.whichwrap + "h"
-vim.opt.whichwrap = vim.opt.whichwrap + "l"
+-- vim.opt.whichwrap = vim.opt.whichwrap + "b"
+-- vim.opt.whichwrap = vim.opt.whichwrap + "s"
+-- vim.opt.whichwrap = vim.opt.whichwrap + "<"
+-- vim.opt.whichwrap = vim.opt.whichwrap + ">"
+-- vim.opt.whichwrap = vim.opt.whichwrap + "h"
+-- vim.opt.whichwrap = vim.opt.whichwrap + "l"
+-- vim.opt.colorcolumn = "81"
+-- vim.opt.conceallevel = 0
 vim.diagnostic.enable(false)

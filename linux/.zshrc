@@ -3,9 +3,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 if [[ -f "/opt/homebrew/bin/brew" ]] then
   # If you're using macOS, you'll want this enabled
@@ -14,6 +14,16 @@ fi
 
 fpath+=( ~/.zfuncs "${fpath[@]}" )
 export fpath
+
+# ! Functions
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -84,27 +94,35 @@ setopt dot_glob
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath'
-# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --tree --color=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -A -l -F --color==always --date=relative --header --hyperlink=never --size=short --date=relative --group-dirs=last -L $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd -A -l -F --color=always --date=relative --header --hyperlink=never --size=short --date=relative --group-dirs=last -L $realpath'
 
 # Aliases
-# export EDITOR=$(which nvim)
-# alias v="$EDITOR"
-alias fe='yazi'
-alias v='nvim'
+export EDITOR=nvim
+export PAGER=bat
+alias v="$EDITOR"
+alias fe='yy'
+# alias v='nvim'
 alias c='clear'
-alias ll='eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink'
-alias -g bat='batcat'
-alias rm='rm -I'
+alias ll='lsd -A -l -F --color=always --date=relative --header --hyperlink=never --size=short --date=relative --group-dirs=last -L'
+alias l='lsd -A -F --color=always --date=relative --header --hyperlink=never --size=short --date=relative --group-dirs=last -L'
+# alias -g bat='batcat'
+alias rms='trash-put'
 # alias clip='xclip -sel c < '
 alias clip="xclip -selection clipboard"
 alias paste="xclip -o -selection clipboard"
 alias des='trans es:en -d'
 alias den='trans en:es -d'
+alias top='btop'
 alias sup='sudo apt update && sudo apt upgrade'
+alias sin='sudo apt install'
 alias lv='nvim -c "normal '\''0"'
-# alias -g W='| nvim -c "setlocal buftype=nofile bufhidden=wipe" -c "nnoremap <buffer> q :q!<CR>" -'
+alias lg='lazygit'
+alias ..='cd ..'
+alias ...='code .'
+alias ds='gdu-go'
+cx() { cd "$@" && l; }
+alias -g W='| nvim -c "setlocal buftype=nofile bufhidden=wipe" -c "nnoremap <buffer> q :q!<CR>" -'
 # alias teln="rg --files | fzf --border-label='[ File search ]' --preview 'batcat --style=numbers --color=always --line-range :100 {}' | xargs nvim "
 # alias MANPAGER='nvim +Man!'
 # fuzzy find file with preview
@@ -134,14 +152,15 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:/mnt/c/Program\ Files/Java/jdk-22/bin"
-export FZF_ALT_C_OPTS="--preview 'eza --color=always --color-scale --long --git --icons=always --time=modified --header --time-style=relative --classify=auto --group-directories-first --sort=name --links --all --hyperlink {}'"
+export FZF_ALT_C_OPTS="--preview 'lsd -A -l -F --color=always --date=relative --header --hyperlink=never --size=short --date=relative --group-dirs=last -L {}'"
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
 # export FZF_CTRL_T_OPTS="--preview 'batcat -n --color=always {}'"
 # export FZF_COMPLETION_TRIGGER='**'
 # export FZF_COMPLETION_OPTS='--border --info=inline'
-export FZF_DEFAULT_OPTS="-i -m --height=100% --preview='batcat -n --color=always {}'"
+export FZF_DEFAULT_OPTS="-i -m --height=100%"
 # export FZF_DEFAULT_OPTS="-i --height=100%"
 export PATH="$PATH:$HOME/bin"
+export MISE_NODE_COREPACK=true
 # export FZF_CTRL_R_OPTS="--preview 'echo {}'
                         # --preview-window down:3:hidden:wrap 
                         # --bind '?:toggle-preview' 
@@ -168,3 +187,13 @@ bindkey '^r' atuin-search
 # bind to the up key, which depends on terminal mode
 bindkey ';5A' atuin-up-search
 # bindkey '^[OA' atuin-up-search
+
+# fnm
+# FNM_PATH="/home/victz/.local/share/fnm"
+# if [ -d "$FNM_PATH" ]; then
+#   export PATH="/home/victz/.local/share/fnm:$PATH"
+#   eval "`fnm env`"
+# fi
+eval "$(gh copilot alias -- zsh)"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

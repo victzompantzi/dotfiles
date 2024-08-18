@@ -53,16 +53,16 @@ return {
       },
     },
   },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   opts = {
-  --     transparent = true,
-  --     styles = {
-  --       sidebars = "transparent",
-  --       floats = "transparent",
-  --     },
-  --   },
-  -- },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     enabled = true,
@@ -96,6 +96,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = true },
+      servers = {
+        pyright = {
+          mason = false,
+        },
+      },
     },
   },
 }

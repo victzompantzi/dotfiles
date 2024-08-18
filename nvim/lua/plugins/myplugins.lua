@@ -51,20 +51,16 @@ return {
     },
   },
   {
-    -- Barbecue
-    -- https://github.com/utilyre/barbecue.nvim
     "utilyre/barbecue.nvim",
     name = "barbecue",
     version = "*",
     dependencies = {
-      -- https://github.com/SmiteshP/nvim-navic
       "SmiteshP/nvim-navic",
-      -- https://github.com/nvim-tree/nvim-web-devicons
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
     opts = {
       -- configurations go here
-      theme = "rose-pine-moon",
+      theme = "",
     },
   },
   {
@@ -101,12 +97,20 @@ return {
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
+      window = {
+        backdrop = 1, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        -- height and width can be:
+        -- * an absolute number of cells when > 1
+        -- * a percentage of the width / height of the editor when <= 1
+        -- * a function that returns the width or the height
+        width = 100,
+      },
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine-moon",
+      colorscheme = "tokyonight",
     },
   },
   { "rose-pine/neovim", name = "rose-pine" },
@@ -141,27 +145,77 @@ return {
   {
     "sindrets/diffview.nvim",
   },
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false, -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
-
-    dependencies = {
-      -- You will not need this if you installed the
-      -- parsers manually
-      -- Or if the parsers are in your $RUNTIMEPATH
-      "nvim-treesitter/nvim-treesitter",
-
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   lazy = false, -- Recommended
+  --   -- ft = "markdown" -- If you decide to lazy-load anyway
+  --
+  --   dependencies = {
+  --     -- You will not need this if you installed the
+  --     -- parsers manually
+  --     -- Or if the parsers are in your $RUNTIMEPATH
+  --     "nvim-treesitter/nvim-treesitter",
+  --
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  -- },
   {
     "epwalsh/obsidian.nvim",
     requires = {
       -- Required.
       "nvim-lua/plenary.nvim",
-
       -- see below for full list of optional dependencies 👇
+    },
+  },
+  {
+    "ecthelionvi/NeoColumn.nvim",
+    opts = {},
+  },
+  -- {
+  --   "andrewferrier/wrapping.nvim",
+  --   config = function()
+  --     require("wrapping").setup()
+  --   end,
+  -- },
+  -- { "gitaarik/nvim-cmp-toggle" },
+  {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  },
+  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>-",
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>cw",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory",
+      },
+      {
+        -- NOTE: this requires a version of yazi that includes
+        -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+        "<c-up>",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    ---@type YaziConfig
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = "<f1>",
+      },
     },
   },
 }
