@@ -4,7 +4,16 @@ require("transparent").clear_prefix("edgy")
 require("transparent").clear_prefix("Barbecue")
 require("transparent").clear_prefix("notify")
 require("transparent").clear_prefix("WhichKey")
+-- ! mason-lspconfig setup
+require("mason").setup()
+require("mason-lspconfig").setup({
+  automatic_installation = false,
+})
 
+-- After setting up mason-lspconfig you may set up servers via lspconfig
+-- require("lspconfig").lua_ls.setup {}
+-- require("lspconfig").rust_analyzer.setup {}
+-- ...
 -- -- initialize global var to false -> nvim-cmp turned off per default
 vim.g.cmptoggle = false
 
@@ -16,29 +25,29 @@ cmp.setup({
 })
 vim.keymap.set("n", "<leader>ua", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggle<CR>", { desc = "toggle nvim-cmp" })
 
--- ! ruff-lsp config
-require("lspconfig").ruff.setup({
-  init_options = {
-    settings = {
-      -- Ruff language server settings go here
-    },
-  },
-})
-
-require("lspconfig").pyright.setup({
-  settings = {
-    pyright = {
-      -- Using Ruff's import organizer
-      disableOrganizeImports = true,
-    },
-    python = {
-      analysis = {
-        -- Ignore all files for analysis to exclusively use Ruff for linting
-        ignore = { "*" },
-      },
-    },
-  },
-})
+--! ruff-lsp config
+-- require("lspconfig").ruff.setup({
+--   init_options = {
+--     settings = {
+--       -- Ruff language server settings go here
+--     },
+--   },
+-- })
+--
+-- require("lspconfig").pyright.setup({
+--   settings = {
+--     pyright = {
+--       -- Using Ruff's import organizer
+--       disableOrganizeImports = true,
+--     },
+--     python = {
+--       analysis = {
+--         -- Ignore all files for analysis to exclusively use Ruff for linting
+--         ignore = { "*" },
+--       },
+--     },
+--   },
+-- })
 
 -- ! NeoColumn
 require("NeoColumn").setup()
@@ -85,48 +94,18 @@ hipatterns.setup({
     hex_color = hipatterns.gen_highlighter.hex_color(),
   },
 })
--- ! Noice config
--- local noice = require("noice")
--- noice.setup({
---   lsp_progress = {
---     enabled = false,
---   },
--- })
-
--- ! Markview Config
--- local markview = require("markview")
--- local presets = require("markview.presets")
---
--- markview.setup({
---   headings = presets.headings.glow_labels,
---   modes = { "n", "no", "c" }, -- Change these modes
---   -- to what you need
---
---   hybrid_modes = { "n" }, -- Uses this feature on
---   -- normal mode
---
---   -- This is nice to have
---   callbacks = {
---     on_enable = function(_, win)
---       vim.wo[win].conceallevel = 0
---       vim.wo[win].conecalcursor = "c"
---     end,
---   },
--- })
---
--- vim.cmd("Markview enableAll")
 
 -- ! Markdown-oxide
 -- An example nvim-lspconfig capabilities setting
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
--- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
-capabilities.workspace = {
-  didChangeWatchedFiles = {
-    dynamicRegistration = true,
-  },
-}
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+--
+-- -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+-- -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+-- capabilities.workspace = {
+--   didChangeWatchedFiles = {
+--     dynamicRegistration = true,
+--   },
+-- }
 
 -- require("lspconfig").markdown_oxide.setup({
 --   capabilities = capabilities, -- again, ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
@@ -155,4 +134,45 @@ require("obsidian").setup({
   ui = { enable = false },
   sort_by = "modified",
   sort_reversed = true,
+})
+require("noice").setup({
+  presets = {
+    -- you can enable a preset by setting it to true, or a table that will override the preset config
+    -- you can also add custom presets that you can enable/disable with enabled=true
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = false, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+  },
+  views = {
+    cmdline_popup = {
+      position = {
+        row = 5,
+        col = "50%",
+      },
+      size = {
+        width = 60,
+        height = "auto",
+      },
+    },
+    popupmenu = {
+      relative = "editor",
+      position = {
+        row = 8,
+        col = "50%",
+      },
+      size = {
+        width = 60,
+        height = 10,
+      },
+      border = {
+        style = "rounded",
+        padding = { 0, 1 },
+      },
+      win_options = {
+        winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+      },
+    },
+  },
+  lsp = { progress = { enabled = false } },
 })

@@ -12,16 +12,16 @@
         "command": "runCommands",
         "key": "ctrl+alt+c"
     },
-    {
-        "args": {
-            "commands": [
-                "cursorDown",
-                "editor.action.clipboardPasteAction"
-            ]
-        },
-        "command": "runCommands",
-        "key": "ctrl+v"
-    },
+    // {
+    //     "args": {
+    //         "commands": [
+    //             "cursorDown",
+    //             "editor.action.clipboardPasteAction"
+    //         ]
+    //     },
+    //     "command": "runCommands",
+    //     "key": "ctrl+v"
+    // },
     // Easy navigation in quick open/QuickPick
     {
         "command": "selectNextSuggestion",
@@ -928,5 +928,13 @@
         "command": "-vscode-neovim.send",
         "key": "ctrl+l",
         "when": "editorTextFocus && neovim.ctrlKeysInsert.l && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "ctrl+shift+numpad_add",
+        "command": "editor.emmet.action.incrementNumberByOne"
+    },
+    {
+        "key": "ctrl+shift+numpad_subtract",
+        "command": "editor.emmet.action.decrementNumberByOne"
     }
 ]

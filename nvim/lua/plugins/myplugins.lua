@@ -7,6 +7,7 @@ return {
   --     require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
   --   end,
   -- },
+  -- { "pocco81/auto-save.nvim" },
   {
     "minamorl/nvim-clean-paste",
   },
@@ -60,37 +61,20 @@ return {
     },
     opts = {
       -- configurations go here
-      theme = "",
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-      },
+      theme = "tokyonight",
     },
   },
   -- {
-  --   "stevearc/oil.nvim",
-  --   opts = {},
-  --   -- Optional dependencies
-  --   dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  --   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  --   "neovim/nvim-lspconfig",
+  --   ---@class PluginLspOpts
+  --   opts = {
+  --     ---@type lspconfig.options
+  --     servers = {
+  --       -- pyright will be automatically installed with mason and loaded with lspconfig
+  --     },
+  --   },
   -- },
-  -- {
-  --   "Pocco81/auto-save.nvim",
-  --   config = function()
-  --     require("auto-save").setup({
-  --       -- your config goes here
-  --       trigger_events = { "InsertLeave" },
-  --       -- or just leave it empty :)
-  --     })
-  --   end,
-  -- },
-  -- -- Lua
+  -- Lua
   {
     "folke/zen-mode.nvim",
     opts = {
@@ -178,12 +162,19 @@ return {
   --   end,
   -- },
   -- { "gitaarik/nvim-cmp-toggle" },
-  {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-  },
+  -- {
+  --   "williamboman/mason.nvim",
+  --   "williamboman/mason-lspconfig.nvim",
+  --   "neovim/nvim-lspconfig",
+  -- },
   { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  },
   ---@type LazySpec
   {
     "mikavilpas/yazi.nvim",

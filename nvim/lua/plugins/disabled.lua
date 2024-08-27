@@ -96,11 +96,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       inlay_hints = { enabled = true },
-      servers = {
-        pyright = {
-          mason = false,
-        },
-      },
+      servers = {},
     },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = true,
   },
 }

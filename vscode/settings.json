@@ -8,6 +8,9 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[javascript]": {
     "editor.maxTokenizationLineLength": 2500,
     "editor.tabSize": 2
@@ -43,6 +46,9 @@
   "[sql]": {
     "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
   },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
   "accessibility.signals.terminalBell": {
     "sound": "on"
   },
@@ -71,7 +77,6 @@
       "languages": ["python", "ruby"]
     }
   ],
-  // Better Comments
   "better-comments.multilineComments": true,
   "better-comments.tags": [
     {
@@ -133,7 +138,6 @@
   "cmake.showOptionsMovedNotification": false,
   "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
   "commentTranslate.targetLanguage": "es",
-  "cSpell.enableFiletypes": ["!c"],
   "cSpell.ignoreWords": ["vhtc"],
   "cSpell.language": "en,es",
   "cSpell.userWords": [
@@ -145,7 +149,8 @@
     "mayoreo",
     "Obregón",
     "Poniatowska",
-    "Suscríbete"
+    "Suscríbete",
+    "Tzompantzi"
   ],
   "debug.onTaskErrors": "debugAnyway",
   "debug.openDebug": "neverOpen",
@@ -158,15 +163,9 @@
   "diffEditor.maxComputationTime": 0,
   "diffEditor.renderIndicators": true,
   "dotnet.preferRuntimeFromSDK": true,
-  // Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
   "editor.acceptSuggestionOnCommitCharacter": true,
-  // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
   "editor.acceptSuggestionOnEnter": "on",
   "editor.accessibilitySupport": "off",
-  "editor.codeActionsOnSave": {
-    // TODO: check other options
-    "source.fixAll.eslint": "always"
-  },
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 4,
@@ -179,8 +178,7 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
-  "editor.glyphMargin": true,
-  "editor.guides.bracketPairs": true,
+"editor.glyphMargin": true,
   "editor.highlightActivateIndentGuide": true,
   "editor.letterSpacing": 0.5,
   "editor.lineHeight": 1.5,
@@ -193,9 +191,7 @@
   "editor.mouseWheelZoom": true,
   "editor.occurrencesHighlight": "off",
   "editor.overviewRulerBorder": false,
-  // Enable parameter hints
   "editor.parameterHints.enabled": true,
-  // Controls if quick suggestions should show up while typing
   "editor.quickSuggestions": {
     "comments": false,
     "other": true,
@@ -207,17 +203,12 @@
   "editor.semanticHighlighting.enabled": "configuredByTheme",
   "editor.snippetSuggestions": "top",
   "editor.stickyScroll.enabled": true,
-  // Controls whether sorting favours words that appear close to the cursor
   "editor.suggest.localityBonus": true,
   "editor.suggest.showStatusBar": true,
-  // Controls if suggestions should automatically show up when typing trigger characters
   "editor.suggestOnTriggerCharacters": true,
-  // Controls how suggestions are pre-selected when showing the suggest list
   "editor.suggestSelection": "first",
-  // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
   "editor.tabCompletion": "on",
   "editor.tabSize": 4,
-  // Enable word based suggestions
   "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "on",
@@ -243,7 +234,6 @@
     "vscodevim.vim": 1
   },
   "extensiontotal.apiKeySetting": "xtotal3a5336b6831a45679b4d6543735c4285",
-  // To improve performance
   "files.associations": {
     "*.c": "c",
     "*.js": "javascript",
@@ -269,9 +259,9 @@
   "gitProjectManager.baseProjectsFolders": ["~/OneDrive/projects"],
   "gitProjectManager.displayProjectPath": true,
   "gitProjectManager.ignoredFolders": ["node_modules"],
+  "gitProjectManager.maxDepthRecursion": -1,
   "gitProjectManager.openInNewWindow": true,
   "gitProjectManager.storeRepositoriesBetweenSessions": true,
-  // SOP's highlight matching tag setting.
   "highlight-matching-tag.styles": {
     "opening": {
       "full": {
@@ -284,8 +274,8 @@
   "indenticator.inner.showIndentGuide": false,
   "indenticator.showHover": true,
   "indenticator.width": 0.1,
-  // For which languages indent-rainbow should be deactivated (if empty it means none).
-  "indentRainbow.excludedLanguages": ["plaintext"], // 10 makes it super fast but may cost more resources
+  "indentRainbow.excludedLanguages": ["plaintext"],
+  "javascript.suggest.paths": false,
   "js/ts.implicitProjectConfig.checkJs": true,
   "launch": {
     "configurations": []
@@ -349,7 +339,7 @@
     "workbench.action.files.save",
     {
       "args": {
-        "delay": 1000 // change according to your need
+        "delay": 1000
       },
       "command": "$delay"
     },
@@ -359,6 +349,7 @@
   "security.allowedUNCHosts": ["wsl.localhost"],
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
+  "subtleBrackets.disableNative": true,
   "subtleBrackets.pairs": [
     {
       "close": ")",
@@ -385,6 +376,7 @@
   "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
   "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.hideOnStartup": "always",
+  "typescript.suggest.paths": false,
   "typescript.tsserver.log": "off",
   "update.mode": "start",
   "vscode-neovim.compositeKeys": {},
@@ -404,7 +396,6 @@
     }
   },
   "vscode-neovim.neovimClean": false,
-  "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
   "vscode-neovim.revealCursorScrollLine": true,
   "window.newWindowProfile": "Default",
   "window.titleBarStyle": "custom",
@@ -422,11 +413,10 @@
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   "zenMode.showTabs": "none",
-  "gitProjectManager.maxDepthRecursion": -1,
-  "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml"
-  },
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  }
+  "vscode-neovim.useWSL": true,
+  "vscode-neovim.neovimExecutablePaths.linux": "/home/victz/.local/share/mise/installs/neovim/latest/bin/nvim",
+  "editor.codeActionsOnSave": {},
+"github.copilot.editor.enableCodeActions": false,
+"editor.guides.bracketPairs": "active",
+"editor.bracketPairColorization.independentColorPoolPerBracketType": true
 }
