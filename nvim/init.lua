@@ -50,7 +50,19 @@ vim.keymap.set("n", "<leader>ua", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggl
 -- })
 
 -- ! NeoColumn
-require("NeoColumn").setup()
+require("NeoColumn").setup({
+  always_on = false,
+})
+
+-- Catpuccin
+require("catppuccin").setup({
+  flavour = "mocha", -- latte, frappe, macchiato, mocha
+  background = { -- :h background
+    light = "latte",
+    dark = "mocha",
+  },
+  transparent_background = true,
+})
 
 -- ! Indent-blankline config
 local highlight = {
@@ -95,34 +107,6 @@ hipatterns.setup({
   },
 })
 
--- ! Markdown-oxide
--- An example nvim-lspconfig capabilities setting
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
---
--- -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
--- -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
--- capabilities.workspace = {
---   didChangeWatchedFiles = {
---     dynamicRegistration = true,
---   },
--- }
-
--- require("lspconfig").markdown_oxide.setup({
---   capabilities = capabilities, -- again, ensure that capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
---   on_attach = on_attach, -- configure your on attach config
--- })
--- local cmp = require("cmp")
---
--- cmp.setup({
---   sources = cmp.config.sources({
---     {
---       name = "nvim_lsp",
---       option = {
---         markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] },
---       },
---     },
---   }),
--- })
 -- Obsidian Config
 require("obsidian").setup({
   workspaces = {
@@ -175,4 +159,18 @@ require("noice").setup({
     },
   },
   lsp = { progress = { enabled = false } },
+})
+-- Running linters
+-- require("lint").get_running()
+require("lint").linters_by_ft = {
+  markdown = { "markdownlint" },
+}
+-- require("hop").setup()
+require("conform").setup({
+  formatters_by_ft = {
+    markdown = { "mdslw" },
+  },
+  formatters = {
+    mdslw = { prepend_args = { "--stdin-filepath", "$FILENAME" } },
+  },
 })

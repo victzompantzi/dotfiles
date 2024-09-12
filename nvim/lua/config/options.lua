@@ -6,17 +6,17 @@
 -- Add any additional options here
 vim.opt.spelllang = { "es", "en" }
 -- vim.opt.scrolloff = 999
-vim.opt.cul = false
+-- vim.opt.cul = false
 -- vim.opt.formatoptions = "tcro/nvjp"
 -- vim.opt.formatoptions = "tqo/ln"
 vim.opt.pumblend = 0
-vim.opt.list = false
-vim.opt.wrap = true
+-- vim.opt.list = true
+-- vim.opt.wrap = true
 -- vim.opt.linebreak = true
 -- vim.opt.textwidth = 0
 -- vim.opt.columns = 80
 -- vim.opt.wm = 0
-vim.opt.backspace = { "eol", "start", "indent" }
+-- vim.opt.backspace = { "eol", "start", "indent" }
 -- vim.opt.whichwrap = vim.opt.whichwrap + "b"
 -- vim.opt.whichwrap = vim.opt.whichwrap + "s"
 -- vim.opt.whichwrap = vim.opt.whichwrap + "<"

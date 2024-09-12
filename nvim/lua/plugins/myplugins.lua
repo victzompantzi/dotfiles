@@ -1,11 +1,10 @@
 return {
   -- {
-  --   "phaazon/hop.nvim",
-  --   branch = "v2", -- optional but strongly recommended
-  --   config = function()
-  --     -- you can configure Hop the way you like here; see :h hop-config
-  --     require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-  --   end,
+  --   "smoka7/hop.nvim",
+  --   version = "*",
+  --   opts = {
+  --     keys = "etovxqpdygfblzhckisuran",
+  --   },
   -- },
   -- { "pocco81/auto-save.nvim" },
   {
@@ -61,7 +60,7 @@ return {
     },
     opts = {
       -- configurations go here
-      theme = "tokyonight",
+      theme = "catppuccin-mocha",
     },
   },
   -- {
@@ -87,14 +86,14 @@ return {
         -- * an absolute number of cells when > 1
         -- * a percentage of the width / height of the editor when <= 1
         -- * a function that returns the width or the height
-        width = 100,
+        width = 90,
       },
     },
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin-mocha",
     },
   },
   { "rose-pine/neovim", name = "rose-pine" },
@@ -155,6 +154,18 @@ return {
     "ecthelionvi/NeoColumn.nvim",
     opts = {},
   },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
   -- {
   --   "andrewferrier/wrapping.nvim",
   --   config = function()
@@ -167,14 +178,15 @@ return {
   --   "williamboman/mason-lspconfig.nvim",
   --   "neovim/nvim-lspconfig",
   -- },
-  { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    opts = {},
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-  },
+  -- { "ellisonleao/glow.nvim", config = true, cmd = "Glow" },
+  -- { "razziel89/mdslw" },
+  -- {
+  --   "MeanderingProgrammer/render-markdown.nvim",
+  --   opts = {},
+  --   -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+  --   -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" }, -- if you use standalone mini plugins
+  --   dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  -- },
   ---@type LazySpec
   {
     "mikavilpas/yazi.nvim",
@@ -209,4 +221,56 @@ return {
       },
     },
   },
+  {
+    "jake-stewart/multicursor.nvim",
+    config = function()
+      local mc = require("multicursor-nvim")
+
+      mc.setup()
+
+      -- use MultiCursorCursor and MultiCursorVisual to customize
+      -- additional cursors appearance
+      vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
+      vim.cmd.hi("link", "MultiCursorVisual", "Visual")
+
+      vim.keymap.set("n", "<F2>", function()
+        if mc.hasCursors() then
+          mc.clearCursors()
+        else
+          -- default <esc> handler
+        end
+      end)
+
+      -- add cursors above/below the main cursor
+      vim.keymap.set("n", "<up>", function()
+        mc.addCursor("k")
+      end)
+      vim.keymap.set("n", "<down>", function()
+        mc.addCursor("j")
+      end)
+
+      -- add a cursor and jump to the next word under cursor
+      vim.keymap.set("n", "<c-n>", function()
+        mc.addCursor("*")
+      end)
+
+      -- jump to the next word under cursor but do not add a cursor
+      vim.keymap.set("n", "<c-s>", function()
+        mc.skipCursor("*")
+      end)
+
+      -- add and remove cursors with control + left click
+      vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+    end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  -- { "meuter/lualine-so-fancy.nvim" },
 }

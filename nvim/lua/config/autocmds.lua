@@ -15,3 +15,7 @@
 --   end,
 --   desc = "LSP: Disable hover capability from Ruff",
 -- })
+vim.api.nvim_create_autocmd(
+  { "FocusLost", "ModeChanged", "TextChanged", "BufEnter" },
+  { desc = "autosave", pattern = "*", command = "silent! update" }
+)

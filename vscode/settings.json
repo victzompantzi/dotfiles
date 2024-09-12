@@ -16,7 +16,8 @@
     "editor.tabSize": 2
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
   },
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
@@ -77,6 +78,7 @@
       "languages": ["python", "ruby"]
     }
   ],
+  // Better Comments
   "better-comments.multilineComments": true,
   "better-comments.tags": [
     {
@@ -124,7 +126,7 @@
       "underline": false
     }
   ],
-  "black-formatter.importStrategy": "fromEnvironment",
+  "breadcrumbs.filePath": "last",
   "C_Cpp.intelliSenseEngine": "disabled",
   "clangd.checkUpdates": true,
   "clangd.path": "C:\\clang+llvm-18.1.8-x86_64-pc-windows-msvc\\bin\\clangd.exe",
@@ -138,9 +140,44 @@
   "cmake.showOptionsMovedNotification": false,
   "codestream.serverUrl": "https://codestream-us1.service.newrelic.com",
   "commentTranslate.targetLanguage": "es",
+  "commitlint.config.extend.rules": {
+    "body-leading-blank": [1, "always"],
+    "body-max-line-length": [2, "always", 100],
+    "footer-leading-blank": [1, "always"],
+    "footer-max-line-length": [2, "always", 100],
+    "header-max-length": [2, "always", 50],
+    "scope-case": [2, "always", "lower-case"],
+    "subject-case": [
+      2,
+      "never",
+      ["sentence-case", "start-case", "pascal-case", "upper-case"]
+    ],
+    "subject-empty": [2, "never"],
+    "subject-full-stop": [2, "never", "."],
+    "type-case": [2, "always", "lower-case"],
+    "type-empty": [2, "never"],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "perf",
+        "refactor",
+        "build",
+        "ci",
+        "revert",
+        "style",
+        "test",
+        "chore"
+      ]
+    ]
+  },
   "cSpell.ignoreWords": ["vhtc"],
   "cSpell.language": "en,es",
   "cSpell.userWords": [
+    "Camila",
     "CDMX",
     "Contáctanos",
     "Cuauhtémoc",
@@ -163,35 +200,41 @@
   "diffEditor.maxComputationTime": 0,
   "diffEditor.renderIndicators": true,
   "dotnet.preferRuntimeFromSDK": true,
+  // Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
   "editor.acceptSuggestionOnCommitCharacter": true,
+  // Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
   "editor.acceptSuggestionOnEnter": "on",
   "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {},
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 4,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": false,
-  "editor.fontFamily": "Hack Nerd Font Mono",
+  "editor.fontFamily": "Hack Nerd Font",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.fontWeight": "600",
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-"editor.glyphMargin": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
+  "editor.glyphMargin": true,
+  "editor.guides.bracketPairs": true,
   "editor.highlightActivateIndentGuide": true,
   "editor.letterSpacing": 0.5,
   "editor.lineHeight": 1.5,
   "editor.lineNumbers": "relative",
   "editor.linkedEditing": true,
-  "editor.matchBrackets": "always",
+  "editor.matchBrackets": "never",
   "editor.minimap.autohide": true,
   "editor.minimap.maxColumn": 120,
   "editor.minimap.showSlider": "always",
   "editor.mouseWheelZoom": true,
   "editor.occurrencesHighlight": "off",
   "editor.overviewRulerBorder": false,
+  // Enable parameter hints
   "editor.parameterHints.enabled": true,
+  // Controls if quick suggestions should show up while typing
   "editor.quickSuggestions": {
     "comments": false,
     "other": true,
@@ -202,13 +245,16 @@
   "editor.scrollbar.verticalScrollbarSize": 10,
   "editor.semanticHighlighting.enabled": "configuredByTheme",
   "editor.snippetSuggestions": "top",
-  "editor.stickyScroll.enabled": true,
+  // Controls whether sorting favours words that appear close to the cursor
   "editor.suggest.localityBonus": true,
   "editor.suggest.showStatusBar": true,
+  // Controls if suggestions should automatically show up when typing trigger characters
   "editor.suggestOnTriggerCharacters": true,
+  // Controls how suggestions are pre-selected when showing the suggest list
   "editor.suggestSelection": "first",
+  // Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
   "editor.tabCompletion": "on",
-  "editor.tabSize": 4,
+  // Enable word based suggestions
   "editor.wordBasedSuggestions": "matchingDocuments",
   "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "on",
@@ -234,10 +280,10 @@
     "vscodevim.vim": 1
   },
   "extensiontotal.apiKeySetting": "xtotal3a5336b6831a45679b4d6543735c4285",
+  // To improve performance
   "files.associations": {
     "*.c": "c",
-    "*.js": "javascript",
-    ".batrc": "plaintext"
+    "*.js": "javascript"
   },
   "files.autoGuessEncoding": true,
   "files.autoSave": "afterDelay",
@@ -248,7 +294,10 @@
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
   "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
+  "git.postCommitCommand": "sync",
   "github.copilot.enable": {
     "*": false,
     "markdown": false,
@@ -262,6 +311,8 @@
   "gitProjectManager.maxDepthRecursion": -1,
   "gitProjectManager.openInNewWindow": true,
   "gitProjectManager.storeRepositoriesBetweenSessions": true,
+  "highlight-bad-chars.additionalUnicodeChars": ["\u200E", "\u200F"],
+  // SOP's highlight matching tag setting.
   "highlight-matching-tag.styles": {
     "opening": {
       "full": {
@@ -269,12 +320,6 @@
       }
     }
   },
-  "indenticator.color.dark": "rgba(255,255,255,0.1)",
-  "indenticator.inner.color.dark": "#ff00ff",
-  "indenticator.inner.showIndentGuide": false,
-  "indenticator.showHover": true,
-  "indenticator.width": 0.1,
-  "indentRainbow.excludedLanguages": ["plaintext"],
   "javascript.suggest.paths": false,
   "js/ts.implicitProjectConfig.checkJs": true,
   "launch": {
@@ -339,7 +384,7 @@
     "workbench.action.files.save",
     {
       "args": {
-        "delay": 1000
+        "delay": 1000 // change according to your need
       },
       "command": "$delay"
     },
@@ -396,12 +441,13 @@
     }
   },
   "vscode-neovim.neovimClean": false,
-  "vscode-neovim.revealCursorScrollLine": true,
+  "vscode-neovim.neovimExecutablePaths.win32": "C:\\tools\\neovim\\nvim-win64\\bin\\nvim.exe",
   "window.newWindowProfile": "Default",
   "window.titleBarStyle": "custom",
   "workbench.colorTheme": "Rosé Pine Moon",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.editor.showTabs": "none",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.showTabs": "single",
   "workbench.experimental.enableNewProfilesUI": true,
   "workbench.externalBrowser": "chrome",
   "workbench.iconTheme": "catppuccin-mocha",
@@ -409,14 +455,23 @@
   "workbench.settings.applyToAllProfiles": [
     "editor.suggest.showStatusBar",
     "editor.fontFamily",
-    "editor.tabSize"
+    "editor.tabSize",
+    "editor.stickyScroll.enabled",
+    "files.autoSave",
+    "editor.fontSize",
+    "editor.accessibilitySupport",
+    "editor.defaultFormatter",
+    "git.enableSmartCommit",
+    "git.confirmSync",
+    "git.postCommitCommand",
+    "vscode-neovim.neovimClean",
+    "vscode-neovim.neovimExecutablePaths.win32",
+    "vscode-neovim.revealCursorScrollLine",
+    "vscode-neovim.compositeKeys",
+    "terminal.integrated.enableImages",
+    "terminal.integrated.gpuAcceleration"
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   "zenMode.showTabs": "none",
-  "vscode-neovim.useWSL": true,
-  "vscode-neovim.neovimExecutablePaths.linux": "/home/victz/.local/share/mise/installs/neovim/latest/bin/nvim",
-  "editor.codeActionsOnSave": {},
-"github.copilot.editor.enableCodeActions": false,
-"editor.guides.bracketPairs": "active",
-"editor.bracketPairColorization.independentColorPoolPerBracketType": true
+  "terminal.integrated.enableImages": true
 }

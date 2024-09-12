@@ -3,7 +3,6 @@ Import-Module PSEverything
 # PsFzf Options
 Import-Module PSFzf
 Set-PsFzfOption -TabExpansion
-Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+UpArrow'
 Set-PsFzfOption -EnableAliasFuzzySetEverything
 Set-PsFzfOption -EnableAliasFuzzyKillProcess
@@ -13,20 +12,20 @@ Set-PsFzfOption -EnableAliasFuzzyKillProcess
 # Environment Variables
 $env:BAT_CONFIG_PATH = "C:\Users\vhtc8\.config\.batrc"
 $env:RIPGREP_CONFIG_PATH = "C:\Users\vhtc8\.config\.ripgreprc"
-$env:FZF_ALT_C_OPTS = "--walker-skip .git,node_modules,target --preview 'eza --color=always --color-scale --long --no-git --icons=always  --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=name --links --all --hyperlink --modified --icons=always {}'"
-$env:FZF_DEFAULT_COMMAND = "fd --type f --preview='bat -n --style numbers,changes --color=always {}' --hidden --exclude .git --follow --strip-cwd-prefix"
-$env:FZF_DEFAULT_OPTS = "-i --height=100% --border=rounded"
+$env:FZF_ALT_C_OPTS = "--preview 'lsd -A -l -F --color=always --date=relative --header --blocks=size,date,name --size=short --date=relative --group-dirs=last {}'"
+$env:FZF_DEFAULT_COMMAND = "fd --type f --strip-cwd-prefix --hidden --follow --exclude .git,node_modules"
+$env:FZF_DEFAULT_OPTS = "-i -m"
 $env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' --color header:italic --header 'Press CTRL-Y to copy command and ? to preview it'"
 $env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
-$env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
-$env:BW_SESSION = "MDI/v+bJirHT9CsqxphHY6OAUFxlfmT4xMSjyVpqAJp3M75Xhrg8jB1tM4Q7a6dpWXvh/3wZrwpLPnH1YxJTuA=="
-$env:RUST_BACKTRACE = 1
-$env:RUST_BACKTRACE = "full"
+$ENV:STARSHIP_CONFIG = "C:\Users\vhtc8\.config\starship.toml"
+# $env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
+# $env:RUST_BACKTRACE = 1
+# $env:RUST_BACKTRACE = "full"
 
 # * Functions
 function ll {
-    eza --color=always --color-scale --long --no-git --icons=always  --header --time-style=relative --no-user --no-permissions --classify=auto --group-directories-first --sort=name --links --all --hyperlink --modified --icons=always
+    lsd -A -l -F --color=always --date=relative --header --hyperlink=always --blocks=size,date,name --size=short --date=relative --group-dirs=last
 }
 
 function lv {
@@ -65,17 +64,6 @@ function chun {
     param($string)
     gsudo choco uninstall $string
 }
-
-# Set-PSReadlineKeyHandler -Chord Ctrl+f `
-#     -BriefDescription fzf `
-#     -LongDescription "Find and open files" `
-#     -ScriptBlock {
-#         fds
-#     }
-#
-# function fds {
-#     fd --type f --full-path --hidden --follow --exclude .git | fzf -m --prompt 'Files> ' --header 'CTRL-O Nvim CTRL-E VSCode Ctrl-M mpv'  --preview 'bat -n --style numbers,changes --color=always {}' --bind 'ctrl-o:become(nvim {+})' --bind 'ctrl-e:become(code {+})'
-# }
 
 function ws {
     param($string)
@@ -127,12 +115,12 @@ function ze {
     cde $string
 }
 
-function .. {
+function i {
     Invoke-Item .
 }
 
-function ... {
-    code .
+function .. {
+    Set-Location ..
 }
 
 function Get-PublicIp {
@@ -142,7 +130,7 @@ function Get-PublicIp {
 # * Alias
 Set-Alias v nvim
 Set-Alias tt tree
-Set-Alias which Get-Command
+Set-Alias wh Get-Command
 Set-Alias man Get-Help
 Set-Alias g git
 Set-Alias kill Invoke-FuzzyKillProcess
@@ -156,14 +144,8 @@ Set-Alias ds gdu
 Set-Alias top btop
 Set-Alias ldo lazydocker
 
-# Init posh-git
-Import-Module posh-git
-
-# Init o-m-p
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\xtoys.omp.json" | Invoke-Expression
-
 # Init Terminal Icons
-Import-Module -Name Terminal-Icons
+# Import-Module -Name Terminal-Icons
 
 # Refresh Env
 Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
@@ -172,14 +154,13 @@ Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
 Import-Module -Name CompletionPredictor
 
 Import-Module -Name Microsoft.WinGet.CommandNotFound
-#f45873b3-b655-43a6-b217-97c00aa0db58
+# f45873b3-b655-43a6-b217-97c00aa0db58
 
 # PSReadLine Options
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadlineKeyHandler -Key 'Escape,_' -Function YankLastArg
 Set-PSReadLineKeyHandler -Chord 'Ctrl+RightArrow' -Function ForwardWord
-# Set-PSReadlineKeyHandler -Key 'Ctrl-b' -Function fd!
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption -HistoryNoDuplicates
 Set-PSReadLineOption -PredictionViewStyle InlineView
@@ -189,30 +170,31 @@ Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta'; comment = "`e[92m" }
 
-Set-PSReadLineKeyHandler -Chord '"', "'" `
-    -BriefDescription SmartInsertQuote `
-    -LongDescription "Insert paired quotes if not already on a quote" `
-    -ScriptBlock {
-    param($key, $arg)
-    $line = $null
-    $cursor = $null
-    [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-    if ($line.Length -gt $cursor -and $line[$cursor] -eq $key.KeyChar) {
-        # Just move the cursor
-        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)
-    }
-    else {
-        # Insert matching quotes, move cursor to be in between the quotes
-        [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($key.KeyChar)" * 2)
-        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
-        [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 1)
-    }
-}
+# Set-PSReadLineKeyHandler -Chord '"', "'" `
+#     -BriefDescription SmartInsertQuote `
+#     -LongDescription "Insert paired quotes if not already on a quote" `
+#     -ScriptBlock {
+#     param($key, $arg)
+#     $line = $null
+#     $cursor = $null
+#     [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+#     if ($line.Length -gt $cursor -and $line[$cursor] -eq $key.KeyChar) {
+#         # Just move the cursor
+#         [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor + 1)
+#     }
+#     else {
+#         # Insert matching quotes, move cursor to be in between the quotes
+#         [Microsoft.PowerShell.PSConsoleReadLine]::Insert("$($key.KeyChar)" * 2)
+#         [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+#         [Microsoft.PowerShell.PSConsoleReadLine]::SetCursorPosition($cursor - 1)
+#     }
+# }
 
 # Utilities
 
-Invoke-Expression (& { (gh completion -s powershell | Out-String) })
+# Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
-. "F:\Documents\PowerShell\gh-copilot.ps1"
-
+# . "F:\Documents\PowerShell\gh-copilot.ps1"
+Invoke-Expression (& "C:\Users\vhtc8\scoop\shims\starship.exe" init powershell --print-full-init | Out-String)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+# Invoke-Expression (& { (fnm env --use-on-cd --shell power-shell | Out-String) })
