@@ -29,7 +29,8 @@
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
   "[powershell]": {
-    "editor.defaultFormatter": "ms-vscode.powershell"
+    "editor.defaultFormatter": "ms-vscode.powershell",
+    "editor.formatOnSave": false
   },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -175,10 +176,11 @@
     ]
   },
   "cSpell.ignoreWords": ["vhtc"],
-  "cSpell.language": "en,es",
+  "cSpell.language": "en,es,lorem",
   "cSpell.userWords": [
     "Camila",
     "CDMX",
+    "classpathentry",
     "Contáctanos",
     "Cuauhtémoc",
     "dotnet",
@@ -209,15 +211,14 @@
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 4,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": false,
-  "editor.fontFamily": "Hack Nerd Font",
+  "editor.fontFamily": "Hack Nerd Font Mono",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.fontWeight": "600",
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": false,
-  "editor.formatOnType": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
   "editor.glyphMargin": true,
   "editor.guides.bracketPairs": true,
   "editor.highlightActivateIndentGuide": true,
@@ -305,7 +306,7 @@
     "scminput": false
   },
   "gitlens.mode.active": "zen",
-  "gitProjectManager.baseProjectsFolders": ["~/OneDrive/projects"],
+  "gitProjectManager.baseProjectsFolders": ["C:\\projects"],
   "gitProjectManager.displayProjectPath": true,
   "gitProjectManager.ignoredFolders": ["node_modules"],
   "gitProjectManager.maxDepthRecursion": -1,
@@ -326,11 +327,6 @@
     "configurations": []
   },
   "liveServer.settings.donotShowInfoMsg": true,
-  "markdown-preview-enhanced.codeBlockTheme": "auto.css",
-  "markdown-preview-enhanced.previewTheme": "one-dark.css",
-  "obsidian-md-vsc.defaultNote": "Computer Science\\VSCode\\projects",
-  "obsidian-md-vsc.defaultVault": "Obsidian Vault",
-  "obsidian-md-vsc.defaultVaultPath": "C:\\Users\\vhtc8\\OneDrive\\OneSyncFiles\\Obsidian Vault",
   "peacock.favoriteColors": [
     {
       "name": "Angular Red",
@@ -373,8 +369,8 @@
   "powershell.integratedConsole.suppressStartupBanner": true,
   "prettier.endOfLine": "auto",
   "prettier.eslintIntegration": true,
-  "projectManager.git.baseFolders": ["C:\\Users\\vhtc8\\OneDrive\\projects"],
-  "projectManager.hg.baseFolders": ["C:\\Users\\vhtc8\\projects"],
+  "projectManager.git.baseFolders": ["C:\\projects"],
+  "projectManager.hg.baseFolders": ["C:\\projects"],
   "projectManager.sortList": "Recent",
   "python.defaultInterpreterPath": "C:\\Users\\vhtc8\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
   "redhat.telemetry.enabled": false,
@@ -469,9 +465,45 @@
     "vscode-neovim.revealCursorScrollLine",
     "vscode-neovim.compositeKeys",
     "terminal.integrated.enableImages",
-    "terminal.integrated.gpuAcceleration"
+    "terminal.integrated.gpuAcceleration",
+    "vscode-neovim.useWSL"
   ],
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   "zenMode.showTabs": "none",
-  "terminal.integrated.enableImages": true
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Ubuntu24 (WSL)": {
+      "path": "C:\\WINDOWS\\System32\\wsl.exe",
+      "args": ["-d", "Ubuntu24"]
+    }
+  },
+  "ruff.nativeServer": "on",
+  "vscode-neovim.neovimExecutablePaths.linux": "/home/linuxbrew/.linuxbrew/bin/nvim",
+  "explorer.confirmDelete": false,
+  "[java]": {
+    "editor.defaultFormatter": "josevseb.google-java-format-for-vs-code"
+  },
+  "cSpell.showStatus": false,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "jdk.jdkhome": "",
+  "terminal.integrated.allowChords": false,
+  "java.configuration.runtimes": [],
+  "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+  "code-runner.runInTerminal": true,
+  "editor.tabSize": 2
 }

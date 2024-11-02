@@ -60,7 +60,7 @@ return {
     },
     opts = {
       -- configurations go here
-      theme = "catppuccin-mocha",
+      theme = "rose-pine",
     },
   },
   -- {
@@ -93,10 +93,21 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "rose-pine",
     },
   },
-  { "rose-pine/neovim", name = "rose-pine" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    priority = 1000,
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
   { "xiyaowong/transparent.nvim" },
   -- {
   --   "ibhagwan/fzf-lua",
@@ -221,48 +232,48 @@ return {
       },
     },
   },
-  {
-    "jake-stewart/multicursor.nvim",
-    config = function()
-      local mc = require("multicursor-nvim")
-
-      mc.setup()
-
-      -- use MultiCursorCursor and MultiCursorVisual to customize
-      -- additional cursors appearance
-      vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
-      vim.cmd.hi("link", "MultiCursorVisual", "Visual")
-
-      vim.keymap.set("n", "<F2>", function()
-        if mc.hasCursors() then
-          mc.clearCursors()
-        else
-          -- default <esc> handler
-        end
-      end)
-
-      -- add cursors above/below the main cursor
-      vim.keymap.set("n", "<up>", function()
-        mc.addCursor("k")
-      end)
-      vim.keymap.set("n", "<down>", function()
-        mc.addCursor("j")
-      end)
-
-      -- add a cursor and jump to the next word under cursor
-      vim.keymap.set("n", "<c-n>", function()
-        mc.addCursor("*")
-      end)
-
-      -- jump to the next word under cursor but do not add a cursor
-      vim.keymap.set("n", "<c-s>", function()
-        mc.skipCursor("*")
-      end)
-
-      -- add and remove cursors with control + left click
-      vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
-    end,
-  },
+  -- {
+  --   "jake-stewart/multicursor.nvim",
+  --   config = function()
+  --     local mc = require("multicursor-nvim")
+  --
+  --     mc.setup()
+  --
+  --     -- use MultiCursorCursor and MultiCursorVisual to customize
+  --     -- additional cursors appearance
+  --     vim.cmd.hi("link", "MultiCursorCursor", "Cursor")
+  --     vim.cmd.hi("link", "MultiCursorVisual", "Visual")
+  --
+  --     vim.keymap.set("n", "<F2>", function()
+  --       if mc.hasCursors() then
+  --         mc.clearCursors()
+  --       else
+  --         -- default <esc> handler
+  --       end
+  --     end)
+  --
+  --     -- add cursors above/below the main cursor
+  --     vim.keymap.set("n", "<up>", function()
+  --       mc.addCursor("k")
+  --     end)
+  --     vim.keymap.set("n", "<down>", function()
+  --       mc.addCursor("j")
+  --     end)
+  --
+  --     -- add a cursor and jump to the next word under cursor
+  --     vim.keymap.set("n", "<c-n>", function()
+  --       mc.addCursor("*")
+  --     end)
+  --
+  --     -- jump to the next word under cursor but do not add a cursor
+  --     vim.keymap.set("n", "<c-s>", function()
+  --       mc.skipCursor("*")
+  --     end)
+  --
+  --     -- add and remove cursors with control + left c
+  --     vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse)
+  --   end,
+  -- },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -272,5 +283,26 @@ return {
     end,
     ft = { "markdown" },
   },
+  -- { "nvchad/volt", lazy = true },
+  -- { "nvchad/menu", lazy = true },
   -- { "meuter/lualine-so-fancy.nvim" },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end,
+  },
+  -- {
+  --   "iurimateus/luasnip-latex-snippets.nvim",
+  --   -- vimtex isn't required if using treesitter
+  --   requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+  --   config = function()
+  --     require("luasnip-latex-snippets").setup()
+  --     -- or setup({ use_treesitter = true })
+  --     require("luasnip").config.setup({ enable_autosnippets = true })
+  --   end,
+  -- },
 }

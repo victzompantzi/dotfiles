@@ -6,7 +6,7 @@
 -- Add any additional options here
 vim.opt.spelllang = { "es", "en" }
 -- vim.opt.scrolloff = 999
--- vim.opt.cul = false
+-- vim.opt.cul = true
 -- vim.opt.formatoptions = "tcro/nvjp"
 -- vim.opt.formatoptions = "tqo/ln"
 vim.opt.pumblend = 0

@@ -18,12 +18,23 @@ $env:FZF_DEFAULT_OPTS = "-i -m"
 $env:FZF_CTRL_R_OPTS = "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo {+} | clip)+abort' --color header:italic --header 'Press CTRL-Y to copy command and ? to preview it'"
 $env:PYTHONIOENCODING = "utf-8"
 $env:CGO_ENABLED = '0'
-$ENV:STARSHIP_CONFIG = "C:\Users\vhtc8\.config\starship.toml"
+# $ENV:STARSHIP_CONFIG = "C:\Users\vhtc8\.config\starship.toml"
 # $env:GIT_SSH = "C:\Program Files\OpenSSH\ssh.exe"
 # $env:RUST_BACKTRACE = 1
 # $env:RUST_BACKTRACE = "full"
 
 # * Functions
+
+function y {
+    $tmp = [System.IO.Path]::GetTempFileName()
+    yazi $args --cwd-file="$tmp"
+    $cwd = Get-Content -Path $tmp
+    if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+        Set-Location -LiteralPath $cwd
+    }
+    Remove-Item -Path $tmp
+}
+
 function ll {
     lsd -A -l -F --color=always --date=relative --header --hyperlink=always --blocks=size,date,name --size=short --date=relative --group-dirs=last
 }
@@ -143,6 +154,7 @@ Set-Alias w winget
 Set-Alias ds gdu
 Set-Alias top btop
 Set-Alias ldo lazydocker
+Set-Alias f y
 
 # Init Terminal Icons
 # Import-Module -Name Terminal-Icons
@@ -195,6 +207,6 @@ Set-PSReadLineOption -Colors @{emphasis = '#d95270'; inlinePrediction = 'magenta
 # Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 # . "F:\Documents\PowerShell\gh-copilot.ps1"
-Invoke-Expression (& "C:\Users\vhtc8\scoop\shims\starship.exe" init powershell --print-full-init | Out-String)
+# Invoke-Expression (& "C:\Users\vhtc8\scoop\shims\starship.exe" init powershell --print-full-init | Out-String)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 # Invoke-Expression (& { (fnm env --use-on-cd --shell power-shell | Out-String) })

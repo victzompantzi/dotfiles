@@ -1,14 +1,10 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
-require("transparent").clear_prefix("edgy")
-require("transparent").clear_prefix("Barbecue")
-require("transparent").clear_prefix("notify")
-require("transparent").clear_prefix("WhichKey")
 -- ! mason-lspconfig setup
-require("mason").setup()
-require("mason-lspconfig").setup({
-  automatic_installation = false,
-})
+-- require("mason").setup()
+-- require("mason-lspconfig").setup({
+--   automatic_installation = false,
+-- })
 
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 -- require("lspconfig").lua_ls.setup {}
@@ -50,19 +46,17 @@ vim.keymap.set("n", "<leader>ua", "<cmd>lua vim.g.cmptoggle = not vim.g.cmptoggl
 -- })
 
 -- ! NeoColumn
-require("NeoColumn").setup({
-  always_on = false,
-})
+require("NeoColumn").setup({})
 
 -- Catpuccin
-require("catppuccin").setup({
-  flavour = "mocha", -- latte, frappe, macchiato, mocha
-  background = { -- :h background
-    light = "latte",
-    dark = "mocha",
-  },
-  transparent_background = true,
-})
+-- require("catppuccin").setup({
+--   flavour = "mocha", -- latte, frappe, macchiato, mocha
+--   background = { -- :h background
+--     light = "latte",
+--     dark = "mocha",
+--   },
+--   transparent_background = true,
+-- })
 
 -- ! Indent-blankline config
 local highlight = {
@@ -115,9 +109,24 @@ require("obsidian").setup({
       path = "~/OneDrive/OneSyncFiles/Obsidian Vault",
     },
   },
-  ui = { enable = false },
+  ui = { enable = true },
   sort_by = "modified",
   sort_reversed = true,
+  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+  -- URL it will be ignored but you can customize this behavior here.
+  ---@param url string
+  follow_url_func = function(url)
+    -- Open the URL in the default web browser.
+    vim.cmd(':silent exec "!wsl-open ' .. url .. '"')
+  end,
+  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
+  -- file it will be ignored but you can customize this behavior here.
+  ---@param img string
+  follow_img_func = function(img)
+    -- vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+    -- vim.fn.jobstart({ "xdg-open", url }) -- linux
+    vim.cmd(':silent exec "!wsl-open ' .. url .. '"') -- Windows
+  end,
 })
 require("noice").setup({
   presets = {
@@ -161,16 +170,64 @@ require("noice").setup({
   lsp = { progress = { enabled = false } },
 })
 -- Running linters
--- require("lint").get_running()
+-- Require("lint").get_running()
 require("lint").linters_by_ft = {
   markdown = { "markdownlint" },
+  -- Markdown = { "proselint" },
 }
--- require("hop").setup()
+-- Require("hop").setup()
 require("conform").setup({
   formatters_by_ft = {
     markdown = { "mdslw" },
   },
   formatters = {
-    mdslw = { prepend_args = { "--stdin-filepath", "$FILENAME" } },
+    mdslw = {
+      -- Env = {},
+      prepend_args = { "--stdin-filepath", "$FILENAME" },
+    },
   },
 })
+-- Null_ls
+local null_ls = require("null-ls")
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.completion.spell,
+    null_ls.builtins.diagnostics.proselint,
+    null_ls.builtins.code_actions.proselint,
+    -- require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
+  },
+})
+-- Harper spell checker
+-- require("lspconfig").harper_ls.setup({
+--   settings = {
+--     ["harper-ls"] = {
+--       -- userDictPath = "~/dict.txt",
+--       fileDictPath = "~/.config/harper-ls/",
+--     },
+--   },
+-- })
+-- require("render-markdown").setup({
+--   heading = {
+--     -- Turn on / off heading icon & background rendering
+--     enabled = false,
+--   },
+-- })
+-- require("menu").open(options, opts)
+-- require("lspconfig").ltex.setup(config({
+--   settings = {
+--     ltex = {
+--       language = "en",
+--       -- additionalRules = {
+--       --   languageModel = "~/models/ngrams/",
+--       -- },
+--     },
+--   },
+-- }))
+require("transparent").clear_prefix("edgy")
+require("transparent").clear_prefix("neo-tree")
+require("transparent").clear_prefix("Barbecue")
+require("transparent").clear_prefix("notify")
+require("transparent").clear_prefix("WhichKey")
+require("transparent").clear_prefix("lualine")
